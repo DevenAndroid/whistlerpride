@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:whistlerpride/thefestival_Screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -92,42 +94,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Image.asset('assets/images/banner.png'),
+              child: GestureDetector(
+                onTap: (){
+                  Get.to(TheFestivalScreen());
+                },
+                  child: Image.asset('assets/images/banner.png')),
             ),
-            Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(5.0),
-                  padding: EdgeInsets.all(2.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: DropdownButton<String>(
-                    value: selectedValue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedValue = newValue!;
-                      });
-                    },
-                    items: <String>[
-                      'Option 1',
-                      'Option 2',
-                      'Option 3',
-                      'Option 4'
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                )
-              ],
-            )
           ],
         ),
       ),

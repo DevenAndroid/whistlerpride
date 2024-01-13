@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:whistlerpride/splashScreen.dart';
+import 'package:whistlerpride/thefestival_Screen.dart';
 
 void main() {
   runApp(const MyApp());
