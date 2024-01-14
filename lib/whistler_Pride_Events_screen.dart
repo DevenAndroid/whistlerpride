@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -68,7 +69,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
-                        boxShadow: [BoxShadow(blurRadius: 1)]),
+                        boxShadow: [const BoxShadow(blurRadius: 1)]),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -79,7 +80,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Container(
                           height: 30,
                           width: 90,
@@ -87,11 +88,16 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                             color: const Color(0xffE025E7),
 
                           ),
-                          child: const Center(
-                              child: Text(
-                                'Buy Passes',
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.white),
+                          child: Center(
+                              child: InkWell(
+                                onTap: (){
+                                  Get.to(const ParadeandCommunityDayScreen());
+                                },
+                                child: const Text(
+                                  'Buy Passes',
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
+                                ),
                               )),
                         ),
                       ],
@@ -105,7 +111,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
-                        boxShadow: [BoxShadow(blurRadius: 1)]),
+                        boxShadow: [const BoxShadow(blurRadius: 1)]),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -116,7 +122,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Container(
                           height: 30,
                           width: 90,
@@ -136,10 +142,10 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
-              Row(
+              const SizedBox(height: 10,),
+              const Row(
                 children: [
-                  const Text(
+                  Text(
                     'Event Schedule',
                     style: TextStyle(
                         color: Colors.black,
@@ -148,7 +154,123 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                   ),
 
                 ],
-              )
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 160,
+                    padding: const EdgeInsets.all(16.0),
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [const BoxShadow(blurRadius: 1)]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Left side: Image
+                        Container(
+                          child: Image.asset(
+                            'assets/images/passes.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        const Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'WELCOME PARTY',
+                                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 8),
+                              ),
+                              TextSpan(text: '- January 21, 2024 / 4:30 PM To 8:30 PM',style: TextStyle(fontSize: 8)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 5,),
+                        const Text(
+                          'The festival’s official kick-of where guests mingle meet festival organizer Read More',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10),
+                        ),
+                        const SizedBox(height: 5,),
+
+                        Container(
+                          height: 30,
+                          width: 90,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),
+                            color: const Color(0xffE025E7),
+
+                          ),
+                          child: const Center(
+                              child: Text(
+                                'Buy Tickets',
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.white),
+                              )),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 160,
+                    padding: const EdgeInsets.all(16.0),
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [const BoxShadow(blurRadius: 1)]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Left side: Image
+                        Container(
+                          child: Image.asset(
+                            'assets/images/passes.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        const Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'WELCOME PARTY',
+                                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 8),
+                              ),
+                              TextSpan(text: '- January 21, 2024 / 4:30 PM To 8:30 PM',style: TextStyle(fontSize: 8)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 5,),
+                        const Text(
+                          'The festival’s official kick-of where guests mingle meet festival organizer Read More',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10),
+                        ),
+                        const SizedBox(height: 5,),
+
+                        Container(
+                          height: 30,
+                          width: 90,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),
+                            color: const Color(0xffE025E7),
+
+                          ),
+                          child: const Center(
+                              child: Text(
+                                'Buy Tickets',
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.white),
+                              )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
