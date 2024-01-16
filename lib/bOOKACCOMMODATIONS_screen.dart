@@ -42,7 +42,7 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
             },
             child: const Icon(Icons.arrow_back)),
         title: const Text(
-          'Whistler Pride Eats',
+          'BOOK ACCOMMODATIONS',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
@@ -85,13 +85,6 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Title
-                          const Text(
-                            '21 Steps ',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
 
                           const Text.rich(
                             TextSpan(
@@ -113,8 +106,25 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
                               ],
                             ),
                           ),
+
                           const SizedBox(
                             height: 10,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Get.to(const BOOKACCOMMODATIONSTWOScreen());
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 100,
+                              decoration: BoxDecoration(color:  Color(0xffE025E7),borderRadius: BorderRadius.circular(5)),
+                              child: const Center(
+                                  child: Text(
+                                    'Hotel Package',
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.white),
+                                  )),
+                            ),
                           ),
                           // Button
                         ],
