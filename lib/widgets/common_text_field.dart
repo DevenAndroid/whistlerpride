@@ -51,7 +51,7 @@ class RegisterTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: Color(0xFF384953)),
+      style: const TextStyle(color: Color(0xFF696969)),
       onTap: onTap,
       onChanged: onChanged,
       readOnly: readOnly!,
@@ -71,11 +71,11 @@ class RegisterTextFieldWidget extends StatelessWidget {
       decoration: InputDecoration(
 
           hintText: hint,
-          focusColor: const Color(0xFF384953),
-          hintStyle: GoogleFonts.poppins(
-            color: const Color(0xFF384953),
-            textStyle: GoogleFonts.poppins(
-              color: const Color(0xFF384953),
+          focusColor: const Color(0xFF696969),
+          hintStyle: GoogleFonts.robotoSlab(
+            color: const Color(0xFF696969),
+            textStyle: GoogleFonts.robotoSlab(
+              color: const Color(0xFF696969),
               fontSize: 14,
               fontWeight: FontWeight.w300,
             ),
@@ -104,7 +104,7 @@ class RegisterTextFieldWidget extends StatelessWidget {
     );
   }
 }
-class CommonButtonBlue extends StatelessWidget {
+  class CommonButtonBlue extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
 
@@ -115,12 +115,12 @@ class CommonButtonBlue extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6), color: AppTheme.primaryColor),
+          borderRadius: BorderRadius.circular(6), color: AppTheme.notification),
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            minimumSize: Size(AddSize.screenWidth, AddSize.size50 * 1.2),
-            backgroundColor: AppTheme.primaryColor,
+            minimumSize: Size(AddSize.screenWidth, AddSize.size50 * 0.8),
+            backgroundColor: AppTheme.notification,
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8), // <-- Radius
@@ -128,11 +128,11 @@ class CommonButtonBlue extends StatelessWidget {
             // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           child: Text(title,
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
-                  letterSpacing: .5,
-                  fontSize: 20))),
+                  letterSpacing: .3,
+                  fontSize: 16))),
     );
   }
 }
