@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:whistlerpride/splashScreen.dart';
 import 'package:whistlerpride/thefestival_Screen.dart';
+import 'package:whistlerpride/whistler_thing%20screen.dart';
+import 'package:whistlerpride/youth_programming.dart';
 
 import 'about_ur.dart';
 import 'contact_screen.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ContactScreen(),
+      home: const YouthProgrammingScreen(),
     );
   }
 }
