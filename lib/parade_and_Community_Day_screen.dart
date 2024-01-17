@@ -52,12 +52,56 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
             children: [
               Image.asset('assets/images/imagess.png'),
               const SizedBox(height: 10,),
-              const Text(
-                'Whistler Pride Celebration',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Whistler Pride Celebration',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: const Color(0xffE025E7)),
+                        ),
+                        child: const CircleAvatar(
+                          maxRadius: 15,
+                          minRadius: 15,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15,
+                            color: Color(0xffE025E7),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: const Color(0xffE025E7)),
+                        ),
+                        child: const CircleAvatar(
+                          maxRadius: 15,
+                          minRadius: 15,
+                          backgroundColor: Color(0xffE025E7),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
               Container(
                 padding: const EdgeInsets.all(16.0),
@@ -65,7 +109,15 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(11),
-                    boxShadow: const [BoxShadow(blurRadius: 1)]),
+                    boxShadow: const [ BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(
+                        0.5,
+                        0.5,
+                      ), //Offset
+                      blurRadius: 0.5,
+                      spreadRadius: 0.0,
+                    ),]),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -86,8 +138,8 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                           const Text(
                             'Ski & Ride Groups',
                             style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
 
@@ -95,7 +147,8 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                           const Text(
                             'The social core of the week, the free daily guided ski and snowboard groups Read More',
                             style: TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w600,
                               color: Colors.grey,
                             ),
                           ),
@@ -110,7 +163,10 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                             child: Container(
                               height: 35,
                               width: 120,
-                              color: const Color(0xffE025E7),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: const Color(0xffE025E7),
+                              ),
                               child: const Center(
                                   child: Text(
                                     'Reserve Your Spot',
@@ -138,7 +194,15 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(11),
-                    boxShadow: const [BoxShadow(blurRadius: 1)]),
+                    boxShadow: const [ BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(
+                        0.5,
+                        0.5,
+                      ), //Offset
+                      blurRadius: 0.5,
+                      spreadRadius: 0.0,
+                    ),]),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -157,10 +221,10 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                         children: [
                           // Title
                           const Text(
-                            'Ski & Ride Groups',
+                            'Whistler Pride Youth Social',
                             style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
 
@@ -168,7 +232,8 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                           const Text(
                             'The social core of the week, the free daily guided ski and snowboard groups Read More',
                             style: TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w600,
                               color: Colors.grey,
                             ),
                           ),
@@ -182,7 +247,10 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                             child: Container(
                               height: 35,
                               width: 120,
-                              color: const Color(0xffE025E7),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: const Color(0xffE025E7),
+                              ),
                               child: const Center(
                                   child: Text(
                                     'Reserve Your Spot',
