@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'package:whistlerpride/widgets/common_text_field.dart';
 
+import 'host _hotel_screen.dart';
+
 class BOOKACCOMMODATIONSTWOScreen extends StatefulWidget {
   const BOOKACCOMMODATIONSTWOScreen({super.key});
 
@@ -40,7 +42,7 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
             },
             child: const Icon(Icons.arrow_back)),
         title: const Text(
-          'Whistler Pride Eats',
+          'BOOK ACCOMMODATIONS TWO',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
@@ -115,18 +117,23 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
                             height: 10,
                           ),
                           // Button
-                          Container(
-                            height: 35,
-                            width: 100,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffE025E7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Center(
-                                child: Text(
-                                  'Hotel Package',
-                                  style:
-                                  TextStyle(fontSize: 10, color: Colors.white),
-                                )),
+                          InkWell(
+                            onTap: (){
+                              Get.to(const HosthotelScreen());
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xffE025E7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: const Center(
+                                  child: Text(
+                                    'Hotel Package',
+                                    style:
+                                    TextStyle(fontSize: 10, color: Colors.white),
+                                  )),
+                            ),
                           ),
                         ],
                       ),
@@ -209,32 +216,6 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 35,
-                width: 120,
-                color: const Color(0xffE025E7),
-                child: const Center(
-                    child: Text(
-                      'Search Lodging',
-                      style: TextStyle(fontSize: 10, color: Colors.white),
-                    )),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Prefer to book by phone?Call 1.844.932.0606',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -246,33 +227,25 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
                         width: 120,
                         color: const Color(0xffE025E7),
                         child: const Center(
-                            child: Text(
-                              'Host Hotel',
-                              style: TextStyle(fontSize: 10, color: Colors.white),
-                            )),
+                          child: Text(
+                            'Send',
+                            style: TextStyle(fontSize: 10, color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  Expanded(
-                    child: SizedBox(
-                      width: 200,
-                      child: Container(
-                        height: 35,
-                        width: 120,
-                        color: const Color(0xffE025E7),
-                        child: const Center(
-                            child: Text(
-                              'Book Accommodations',
-                              style: TextStyle(fontSize: 10, color: Colors.white),
-                            )),
-                      ),
+                  const Expanded(
+                    child: Text(
+                      'Book Accommodations',
+                      style: TextStyle(fontSize: 10, color: Colors.white),
                     ),
                   ),
                 ],
-              ),
+              )
             ],
           ),
         ),
