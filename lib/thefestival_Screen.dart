@@ -8,6 +8,7 @@ import 'package:whistlerpride/Repo/thefestival_repo.dart';
 import 'package:whistlerpride/model/thefestivalModel.dart';
 import 'package:whistlerpride/whistler_Pride_Events_screen.dart';
 import 'package:whistlerpride/widgets/apptheme.dart';
+import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 
 class TheFestivalScreen extends StatefulWidget {
   const TheFestivalScreen({super.key});
@@ -49,20 +50,9 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.festival_outlined),
-            label: 'Festival',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.question_mark),
-            label: 'ACCOMMODATIONS',
-          ),
-        ],
+        items: CustomBottomNavigationBar
+            .build()
+            .items,
       ),
       body: Obx(() {
         return isDataLoading.value

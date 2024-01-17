@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:whistlerpride/homepage.dart';
+import 'package:whistlerpride/thefestival_Screen.dart';
 
 class CustomBottomNavigationBar {
   static BottomNavigationBar build() {
     return BottomNavigationBar(
-      items: const [
+      items:  [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: InkWell(
+              onTap: (){
+                Get.to(()=> HomePage());
+              },
+              child: Icon(Icons.home)),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.festival_outlined),
+          icon: InkWell(
+              onTap: (){
+                Get.to(()=> TheFestivalScreen());
+              },
+              child: Icon(Icons.festival_outlined)),
           label: 'Festival',
         ),
         BottomNavigationBarItem(
