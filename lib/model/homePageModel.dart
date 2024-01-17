@@ -28,10 +28,10 @@ class Data {
   String? homeBannerDescription;
   String? homeBannerFestivalDates;
   String? festivalCountdownMessage;
-  List<String>? festivalMenu;
-  List<String>? accommodationsMenu;
+  List<FestivalMenu>? festivalMenu;
+  List<AccommodationsMenu>? accommodationsMenu;
   List<FestivalCountdownList>? festivalCountdownList;
-  List<String>? festivalPartners;
+  List<FestivalPartners>? festivalPartners;
 
   Data(
       {this.homeBanner,
@@ -50,15 +50,30 @@ class Data {
     homeBannerDescription = json['home_banner_description'];
     homeBannerFestivalDates = json['home_banner_festival_dates'];
     festivalCountdownMessage = json['festival_countdown_message'];
-    festivalMenu = json['festival_menu'].cast<String>();
-    accommodationsMenu = json['accommodations_menu'].cast<String>();
+    if (json['festival_menu'] != null) {
+      festivalMenu = <FestivalMenu>[];
+      json['festival_menu'].forEach((v) {
+        festivalMenu!.add(new FestivalMenu.fromJson(v));
+      });
+    }
+    if (json['accommodations_menu'] != null) {
+      accommodationsMenu = <AccommodationsMenu>[];
+      json['accommodations_menu'].forEach((v) {
+        accommodationsMenu!.add(new AccommodationsMenu.fromJson(v));
+      });
+    }
     if (json['festival_countdown_list'] != null) {
       festivalCountdownList = <FestivalCountdownList>[];
       json['festival_countdown_list'].forEach((v) {
         festivalCountdownList!.add(new FestivalCountdownList.fromJson(v));
       });
     }
-    festivalPartners = json['festival_partners'].cast<String>();
+    if (json['festival_partners'] != null) {
+      festivalPartners = <FestivalPartners>[];
+      json['festival_partners'].forEach((v) {
+        festivalPartners!.add(new FestivalPartners.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -68,13 +83,53 @@ class Data {
     data['home_banner_description'] = this.homeBannerDescription;
     data['home_banner_festival_dates'] = this.homeBannerFestivalDates;
     data['festival_countdown_message'] = this.festivalCountdownMessage;
-    data['festival_menu'] = this.festivalMenu;
-    data['accommodations_menu'] = this.accommodationsMenu;
+    if (this.festivalMenu != null) {
+      data['festival_menu'] =
+          this.festivalMenu!.map((v) => v.toJson()).toList();
+    }
+    if (this.accommodationsMenu != null) {
+      data['accommodations_menu'] =
+          this.accommodationsMenu!.map((v) => v.toJson()).toList();
+    }
     if (this.festivalCountdownList != null) {
       data['festival_countdown_list'] =
           this.festivalCountdownList!.map((v) => v.toJson()).toList();
     }
-    data['festival_partners'] = this.festivalPartners;
+    if (this.festivalPartners != null) {
+      data['festival_partners'] =
+          this.festivalPartners!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class FestivalMenu {
+  String? menuTitle;
+
+  FestivalMenu({this.menuTitle});
+
+  FestivalMenu.fromJson(Map<String, dynamic> json) {
+    menuTitle = json['menu_title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['menu_title'] = this.menuTitle;
+    return data;
+  }
+}
+class AccommodationsMenu {
+  String? menuTitle;
+
+  AccommodationsMenu({this.menuTitle});
+
+  AccommodationsMenu.fromJson(Map<String, dynamic> json) {
+    menuTitle = json['menu_title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['menu_title'] = this.menuTitle;
     return data;
   }
 }
@@ -112,6 +167,22 @@ class FestivalCountdownList {
     data['festival_button_url'] = this.festivalButtonUrl;
     data['is_another_url'] = this.isAnotherUrl;
     data['is_page'] = this.isPage;
+    return data;
+  }
+}
+
+class FestivalPartners {
+  String? partnerImage;
+
+  FestivalPartners({this.partnerImage});
+
+  FestivalPartners.fromJson(Map<String, dynamic> json) {
+    partnerImage = json['partner_image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['partner_image'] = this.partnerImage;
     return data;
   }
 }

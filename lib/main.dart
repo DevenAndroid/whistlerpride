@@ -8,6 +8,7 @@ import 'package:whistlerpride/youth_programming.dart';
 import 'about_ur.dart';
 import 'contact_screen.dart';
 import 'faq_screen.dart';
+import 'homepage.dart';
 import 'notification.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const YouthProgrammingScreen(),
+      home: const HomePage(),
     );
   }
 }

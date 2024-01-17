@@ -71,7 +71,10 @@ class _WhistlerPrideEatsScreenState extends State<WhistlerPrideEatsScreen> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(11),
-                            boxShadow: const [BoxShadow(blurRadius: 1)]),
+                            boxShadow:  [
+                              BoxShadow(blurRadius: 5,color: Colors.grey.shade200,offset: Offset(2,2)),
+
+                            ]),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -91,9 +94,10 @@ class _WhistlerPrideEatsScreenState extends State<WhistlerPrideEatsScreen> {
                                   // Title
                                   Text(
                                     '21 Steps ',
-                                    style: GoogleFonts.oswald(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w500,
+                                    style: GoogleFonts.robotoSlab(
+                                      fontSize: 11.0,
+                                      fontWeight: FontWeight.w300,
+
                                     ),
                                   ),
 
