@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whistlerpride/model/homePageModel.dart';
 import 'package:whistlerpride/thefestival_Screen.dart';
 import 'package:whistlerpride/widgets/apptheme.dart';
@@ -25,9 +24,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String? selectedValue1;
   String? selectedValue2;
-
-
-  // Dummy data for dropdowns
   List<String> options = ['Option 1', 'Option 2', 'Option 3'];
   RxBool isDataLoading = false.obs;
   Rx<HomePageModel> model = HomePageModel().obs;
