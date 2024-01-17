@@ -82,7 +82,17 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(11),
-                      boxShadow: const [BoxShadow(blurRadius: 1)]),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(
+                            0.5,
+                            0.5,
+                          ), //Offset
+                          blurRadius: 0.5,
+                          spreadRadius: 0.0,
+                        ),
+                      ]),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -127,7 +137,10 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                               child: Container(
                                 height: 35,
                                 width: 120,
-                                color: const Color(0xffE025E7),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3),
+                                  color: const Color(0xffE025E7),
+                                ),
                                 child: const Center(
                                     child: Text(
                                   'Reserve Your Spot',

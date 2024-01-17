@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'package:whistlerpride/widgets/common_text_field.dart';
 
@@ -86,21 +88,21 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
                         children: [
                           // Title
 
-                          const Text.rich(
+                          Text.rich(
                             TextSpan(
                               children: [
                                 TextSpan(
                                   text:
                                       'Lift tickets are required for all on-mountain activities and we encourage guests to',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
+                                  style: GoogleFonts.robotoSlab(
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 ),
                                 TextSpan(
                                   text: ' Read More',
-                                  style: TextStyle(
+                                  style: GoogleFonts.robotoSlab(
                                       color: Color(0xffE025E7),
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 ),
                               ],
@@ -133,9 +135,9 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
                   ],
                 ),
               ),
-              const Text(
+              Text(
                 'STAY LONGER AND SAVE UP TO 25% ON LODGING ',
-                style: TextStyle(
+                style: GoogleFonts.oswald(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),
@@ -143,9 +145,9 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Book your Winter Pride and Ski Festival lodging today and save up to 25%.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -153,9 +155,9 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Stay and Ski packages are now available when you pair your accommodation with lift tickets.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -163,9 +165,9 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Book 3+ nights between January 1 – 31, 2024 to receive a free 100 CAD Whistler Dining Voucher, valid at participating restaurants. Enter promo code JANUARYDINING at check-out or call 1.844.932.0606 and mention this offer to the Whistler-based Travel Consultants.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -173,9 +175,9 @@ class _BOOKACCOMMODATIONSScreenState extends State<BOOKACCOMMODATIONSScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Salect Date',
-                style: TextStyle(
+                style: GoogleFonts.oswald(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),

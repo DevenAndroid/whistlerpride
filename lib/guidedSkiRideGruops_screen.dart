@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:whistlerpride/whistlerPrideEats_Screen.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 
@@ -42,12 +44,12 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'SIGN UP FOR SKI & RIDE GROUPS',
-                style: TextStyle(
+                style: GoogleFonts.oswald(
                     color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
               ),
               const SizedBox(
                 height: 10,
@@ -58,7 +60,15 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(11),
-                    boxShadow: const [BoxShadow(blurRadius: 1)]),
+                    boxShadow: const [BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(
+                        0.5,
+                        0.5,
+                      ), //Offset
+                      blurRadius: 0.5,
+                      spreadRadius: 0.0,
+                    ),]),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -76,30 +86,23 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Title
-                          const Text(
-                            'Lift Tickets ',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
 
-                          const Text.rich(
+                          Text.rich(
                             TextSpan(
                               children: [
                                 TextSpan(
                                   text:
                                       'Lift tickets are required for all on-mountain activities and we encourage guests to',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 14),
+                                  style: GoogleFonts.robotoSlab(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10),
                                 ),
                                 TextSpan(
                                   text: ' Read More',
-                                  style: TextStyle(
+                                  style: GoogleFonts.robotoSlab(
                                       color: Color(0xffE025E7),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 14),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10),
                                 ),
                               ],
                             ),
@@ -130,12 +133,12 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                   ],
                 ),
               ),
-              const Text(
-                'Our TICKETS & RENTALS',
-                style: TextStyle(
+               Text(
+                'OUR TICKETS & RENTALS',
+                style: GoogleFonts.oswald(
                     color: Colors.black,
                     fontSize: 18,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.w600),
               ),
               ListView.builder(
                   itemCount: 4,
@@ -148,7 +151,15 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(11),
-                          boxShadow: const [BoxShadow(blurRadius: 1)]),
+                          boxShadow: const [BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(
+                              0.5,
+                              0.5,
+                            ), //Offset
+                            blurRadius: 0.5,
+                            spreadRadius: 0.0,
+                          ),]),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -166,30 +177,23 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Title
-                                const Text(
-                                  'Lift Tickets ',
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
 
-                                const Text.rich(
+                                Text.rich(
                                   TextSpan(
                                     children: [
                                       TextSpan(
                                         text:
-                                            'Lift tickets are required for all on-mountain activities and we encourage guests to',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14),
+                                        'Lift tickets are required for all on-mountain activities and we encourage guests to',
+                                        style: GoogleFonts.robotoSlab(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 10),
                                       ),
                                       TextSpan(
                                         text: ' Read More',
-                                        style: TextStyle(
+                                        style: GoogleFonts.robotoSlab(
                                             color: Color(0xffE025E7),
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 14),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 10),
                                       ),
                                     ],
                                   ),
@@ -200,20 +204,18 @@ class _GuidedSkiRideGruopsScreenState extends State<GuidedSkiRideGruopsScreen> {
                                 // Button
                                 InkWell(
                                   onTap: () {
-                                    Get.to(const GuidedSkiRideGruopsScreen());
+                                    Get.to(const WhistlerPrideEatsScreen());
                                   },
                                   child: Container(
                                     height: 35,
                                     width: 100,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffE025E7),
-                                        borderRadius: BorderRadius.circular(5)),
+                                    decoration: BoxDecoration(color:  Color(0xffE025E7),borderRadius: BorderRadius.circular(5)),
                                     child: const Center(
                                         child: Text(
-                                      'Lift Tickets',
-                                      style: TextStyle(
-                                          fontSize: 10, color: Colors.white),
-                                    )),
+                                          'Register',
+                                          style: TextStyle(
+                                              fontSize: 10, color: Colors.white),
+                                        )),
                                   ),
                                 ),
                               ],

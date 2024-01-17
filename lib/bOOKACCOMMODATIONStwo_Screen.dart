@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'package:whistlerpride/widgets/common_text_field.dart';
 
@@ -85,65 +86,44 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Title
-                          const Text(
-                            '21 Steps ',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                          Text(
+                            'MAKE WHISTLER PRIDE PARTNERED HOTELS YOUR PREFERRED HOTELS',
+                            style: GoogleFonts.roboto(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
 
-                          const Text.rich(
+                           Text.rich(
                             TextSpan(
                               children: [
                                 TextSpan(
                                   text:
                                   'Lift tickets are required for all on-mountain activities and we encourage guests to',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
+                                  style: GoogleFonts.robotoSlab(
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 ),
                                 TextSpan(
                                   text: ' Read More',
-                                  style: TextStyle(
+                                  style: GoogleFonts.robotoSlab(
                                       color: Color(0xffE025E7),
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
                           // Button
-                          InkWell(
-                            onTap: (){
-                              Get.to(const HosthotelScreen());
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffE025E7),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: const Center(
-                                  child: Text(
-                                    'Hotel Package',
-                                    style:
-                                    TextStyle(fontSize: 10, color: Colors.white),
-                                  )),
-                            ),
-                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-              const Text(
-                'STAY LONGER AND SAVE UP TO 25% ON LODGING ',
-                style: TextStyle(
+               Text(
+                'ACCOMMODATIONS IN WHISTLER',
+                style: GoogleFonts.oswald(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),
@@ -151,9 +131,9 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Book your Winter Pride and Ski Festival lodging today and save up to 25%.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -161,9 +141,9 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Stay and Ski packages are now available when you pair your accommodation with lift tickets.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -171,9 +151,9 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Book 3+ nights between January 1 – 31, 2024 to receive a free 100 CAD Whistler Dining Voucher, valid at participating restaurants. Enter promo code JANUARYDINING at check-out or call 1.844.932.0606 and mention this offer to the Whistler-based Travel Consultants.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   fontSize: 11.0,
                   fontWeight: FontWeight.w300,
                 ),
@@ -181,9 +161,9 @@ class _BOOKACCOMMODATIONSTWOScreenState extends State<BOOKACCOMMODATIONSTWOScree
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+               Text(
                 'Salect Date',
-                style: TextStyle(
+                style: GoogleFonts.oswald(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                 ),
