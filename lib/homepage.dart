@@ -173,23 +173,36 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xffE025E7)),),
+                            border: Border.all(color: const Color(0xffE025E7)),
+                          ),
                           child: const CircleAvatar(
                             maxRadius: 15,
                             minRadius: 15,
                             backgroundColor: Colors.white,
-                            child: Icon(Icons.arrow_forward_ios,size: 15,color: Color(0xffE025E7),),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 15,
+                              color: Color(0xffE025E7),
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 10,),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xffE025E7)),),
+                            border: Border.all(color: const Color(0xffE025E7)),
+                          ),
                           child: const CircleAvatar(
                             maxRadius: 15,
-                            minRadius: 15,backgroundColor: Color(0xffE025E7),
-                            child: Icon(Icons.arrow_back_ios,size: 15,color: Colors.white,),
+                            minRadius: 15,
+                            backgroundColor: Color(0xffE025E7),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 15,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -199,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 280,
                   child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
+                      scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       physics: const AlwaysScrollableScrollPhysics(),
                       itemBuilder: (index, context) {
@@ -289,23 +302,36 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xffE025E7)),),
+                            border: Border.all(color: const Color(0xffE025E7)),
+                          ),
                           child: const CircleAvatar(
                             maxRadius: 15,
                             minRadius: 15,
                             backgroundColor: Colors.white,
-                            child: Icon(Icons.arrow_forward_ios,size: 15,color: Color(0xffE025E7),),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 15,
+                              color: Color(0xffE025E7),
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 10,),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xffE025E7)),),
+                            border: Border.all(color: const Color(0xffE025E7)),
+                          ),
                           child: const CircleAvatar(
                             maxRadius: 15,
-                            minRadius: 15,backgroundColor: Color(0xffE025E7),
-                            child: Icon(Icons.arrow_back_ios,size: 15,color: Colors.white,),
+                            minRadius: 15,
+                            backgroundColor: Color(0xffE025E7),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 15,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -351,7 +377,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     TextSpan(
                                         text:
-                                        '- January 21, 2024 / 4:30 PM To 8:30 PM',
+                                            '- January 21, 2024 / 4:30 PM To 8:30 PM',
                                         style: TextStyle(fontSize: 8)),
                                   ],
                                 ),
@@ -377,10 +403,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: const Center(
                                     child: Text(
-                                      'Buy Tickets',
-                                      style: TextStyle(
-                                          fontSize: 10, color: Colors.white),
-                                    )),
+                                  'Buy Tickets',
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
+                                )),
                               ),
                             ],
                           ),
