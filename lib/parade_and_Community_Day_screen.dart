@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
-
+import 'dart:ui' as ui;
 import 'CharitySkiRace_screen.dart';
 
 class ParadeandCommunityDayScreen extends StatefulWidget {
@@ -17,21 +18,22 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         leading: GestureDetector(
             onTap: () {
               Get.back();
             },
-            child: const Icon(Icons.arrow_back)),
-        title: const Text(
+            child:  Icon(Icons.arrow_back,color: Colors.black,)),
+        title:  Text(
           'Parade and Community Day',
-          style: TextStyle(color: Colors.black, fontSize: 16),
+          style: GoogleFonts.robotoSlab(
+              color: const Color(0xFF000000),
+              fontSize: 16,
+              fontWeight: FontWeight.w400),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: CustomBottomNavigationBar
-            .build()
-            .items,
-      ),
+
 
       body: SingleChildScrollView(
         child: Padding(
@@ -40,8 +42,52 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/imagess.png'),
-              const SizedBox(height: 10,),
+              Stack(children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(
+                          0.4), // Replace with your desired color and opacity
+                      BlendMode.srcATop,
+                    ),
+                    child: Image.asset(
+                      'assets/images/imagess.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.black, // Adjust opacity as needed
+                  child: BackdropFilter(
+                    filter:
+                    ui.ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.3),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                  child:  Text(
+                    "Parade and community Day",
+                    style: GoogleFonts.robotoSlab(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ]),
+
+
+
+
+              const SizedBox(height: 20,),
+              SizedBox(
+                  width: 250,
+                  child: Image.asset("assets/images/TD.png")),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -93,6 +139,223 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                   )
                 ],
               ),
+
+
+
+              SizedBox(
+                height: 150,
+// width: 100,
+                child: ListView.builder(
+                  itemCount: 10,
+                  physics: const AlwaysScrollableScrollPhysics(),
+shrinkWrap: true,
+
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(9.0),
+
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(11),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(
+                                  0.2,
+                                  0.2,
+                                ),
+                                blurRadius: 1,
+
+                              ),
+                            ]
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Left side: Image
+                            Container(
+                              margin: const EdgeInsets.only(right: 16.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(11),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(11),
+                                child: Image.asset(
+                                  'assets/images/image.png',
+                                  width: 130.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Title
+                                Text(
+                                  "3:00 PM – MEET & GREET AT SKIER’S PLAZA",
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+
+                                Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "Skier’s Plaza at the base of Whistler will be buzzing with",
+                                        style: GoogleFonts.robotoSlab(
+                                            color: Colors.black,
+                                            fontSize: 11,
+                                            height: 1.6,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                      TextSpan(
+                                        text: ' Read More',
+                                        style: GoogleFonts.robotoSlab(
+                                            color: Color(0xFFE025E7),
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                // Button
+                                Container(
+                                  height: 35,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(3),
+                                    color: const Color(0xffE025E7),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                        "wetgeryrh",
+
+                                        style: GoogleFonts.roboto(
+                                            color: Colors.white,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600),
+                                      )),
+                                )
+
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+        Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Container(
+            padding: const EdgeInsets.all(9.0),
+
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(11),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(
+                      0.2,
+                      0.2,
+                    ),
+                    blurRadius: 1,
+
+                  ),
+                ]
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Left side: Image
+                Container(
+                  margin: const EdgeInsets.only(right: 16.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(11),
+                    child: Image.asset(
+                      'assets/images/image.png',
+                      width: 130.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title
+                    Text(
+                      "3:00 PM – MEET & GREET AT SKIER’S PLAZA",
+                      style: GoogleFonts.roboto(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Skier’s Plaza at the base of Whistler will be buzzing with",
+                            style: GoogleFonts.robotoSlab(
+                                color: Colors.black,
+                                fontSize: 11,
+                                height: 1.6,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          TextSpan(
+                            text: ' Read More',
+                            style: GoogleFonts.robotoSlab(
+                                color: Color(0xFFE025E7),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // Button
+                    Container(
+                      height: 35,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.circular(3),
+                        color: const Color(0xffE025E7),
+                      ),
+                      child: Center(
+                          child: Text(
+                            "wetgeryrh",
+
+                            style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600),
+                          )),
+                    )
+
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
               Container(
                 padding: const EdgeInsets.all(16.0),
                 margin: const EdgeInsets.all(10),

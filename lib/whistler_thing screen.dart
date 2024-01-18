@@ -20,11 +20,13 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         leading: GestureDetector(
             onTap: () {
               Get.back();
             },
-            child: const Icon(Icons.arrow_back)),
+            child:  Icon(Icons.arrow_back,color: Colors.black,)),
         title:  Text(
           'Things To Do In Whistler',
           style: GoogleFonts.robotoSlab(
@@ -33,9 +35,7 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
               fontWeight: FontWeight.w400),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: CustomBottomNavigationBar.build().items,
-      ),
+
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Padding(

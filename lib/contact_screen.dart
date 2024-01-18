@@ -15,11 +15,13 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading: GestureDetector(
               onTap: () {
                 Get.back();
               },
-              child: const Icon(Icons.arrow_back)),
+              child:  Icon(Icons.arrow_back,color: Colors.black,)),
           title: Text(
             'Contact Us',
             style: GoogleFonts.robotoSlab(

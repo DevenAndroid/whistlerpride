@@ -23,6 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ScrollController _scrollController = ScrollController();
   String? selectedValue1;
   String? selectedValue2;
   RxString dropDownValue2 = ''.obs;
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     final double itemWidth = size.width / 2;
     return Scaffold(
         appBar: AppBar(
+
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
             elevation: 0,
@@ -96,9 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ]),
-        bottomNavigationBar: BottomNavigationBar(
-          items: CustomBottomNavigationBar.build().items,
-        ),
+
         drawer: Drawer(
           backgroundColor: Colors.white,
           child: ListView(
@@ -519,40 +519,50 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Row(
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: const Color(0xffE025E7)),
-                                  ),
-                                  child: const CircleAvatar(
-                                    maxRadius: 15,
-                                    minRadius: 15,
-                                    backgroundColor: Colors.white,
-                                    child: Icon(
-                                      Icons.arrow_back_ios,
-                                      size: 15,
-                                      color: Color(0xffE025E7),
+                                InkWell(
+                                  onTap: (){
+                                    _scrollListView(-2);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: const Color(0xffE025E7)),
+                                    ),
+                                    child: const CircleAvatar(
+                                      maxRadius: 15,
+                                      minRadius: 15,
+                                      backgroundColor: Colors.white,
+                                      child: Icon(
+                                        Icons.arrow_back_ios,
+                                        size: 15,
+                                        color: Color(0xffE025E7),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: const Color(0xffE025E7)),
-                                  ),
-                                  child: const CircleAvatar(
-                                    maxRadius: 15,
-                                    minRadius: 15,
-                                    backgroundColor: Color(0xffE025E7),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 15,
-                                      color: Colors.white,
+                                InkWell(
+                                  onTap: (){
+                                    _scrollListView(2);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: const Color(0xffE025E7)),
+                                    ),
+                                    child: const CircleAvatar(
+                                      maxRadius: 15,
+                                      minRadius: 15,
+                                      backgroundColor: Color(0xffE025E7),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 15,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -566,6 +576,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           height: 310,
                           child: ListView.builder(
+                            controller: _scrollController,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemCount: model
@@ -893,4 +904,16 @@ class _HomePageState extends State<HomePage> {
                 ));
         }));
   }
+  void _scrollListView(int direction) {
+    // Calculate the new scroll offset based on the current position and direction
+    double newOffset = _scrollController.offset + (direction * 50.0);
+
+    // Scroll to the new offset with animation
+    _scrollController.animateTo(
+      newOffset,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
 }
