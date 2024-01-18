@@ -8,9 +8,9 @@ class GetPrideEventsController extends GetxController{
   Rx<RxStatus> statusOfGetEvents = RxStatus.empty().obs;
   Rx<GetWhistlerPrideEventsModel> getPrideEventsModel = GetWhistlerPrideEventsModel().obs;
 
-  getPrideEvents(){
+  Future getPrideEvents() async {
     statusOfGetEvents.value = RxStatus.empty();
-    getPrideEventsRepo().then((value) {
+    await getPrideEventsRepo().then((value) {
       statusOfGetEvents.value = RxStatus.success();
       getPrideEventsModel.value = value;
     });

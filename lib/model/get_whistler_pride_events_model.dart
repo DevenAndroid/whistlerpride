@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class GetWhistlerPrideEventsModel {
   bool? status;
   dynamic message;
@@ -176,20 +178,25 @@ class EventScheduleLists {
 }
 
 class EventPlace {
+  dynamic eventTitle;
   dynamic latitude;
   dynamic longitude;
+  LatLng? latLong;
 
-  EventPlace({this.latitude, this.longitude});
+  EventPlace({this.latitude, this.longitude,this.eventTitle});
 
   EventPlace.fromJson(Map<String, dynamic> json) {
     latitude = json['latitude'];
+    eventTitle = json['event_title'];
     longitude = json['longitude'];
+    latLong = LatLng(double.tryParse(latitude.toString()) ?? 0, double.tryParse(longitude.toString()) ?? 0);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
+    data['event_title'] = this.eventTitle;
     return data;
   }
 }
