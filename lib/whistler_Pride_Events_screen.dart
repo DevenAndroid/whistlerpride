@@ -279,7 +279,13 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                                   ),
 
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      if (item.isAnotherUrl == true) {
+                                        launchURL(item.eventsBookLink.toString());
+                                      } else {
+                                        // Get.to(() => const ParadeandCommunityDayScreen());
+                                      }
+                                    },
                                     child: Container(
                                       height: 30,
                                       width: 90,

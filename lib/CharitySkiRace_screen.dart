@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'controller/charity_race_controller.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'dart:ui' as ui;
 import 'guidedSkiRideGruops_screen.dart';
@@ -15,6 +16,8 @@ class CharitySkiRaceScreen extends StatefulWidget {
 }
 
 class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
+
+  final getCharityController = Get.put(GetCharityRaceController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,35 +114,66 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                         GoogleFonts.robotoSlab(fontSize: 10, color: const Color(0xffE025E7),fontWeight: FontWeight.w600,)),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ListView.builder(
-                  itemCount: 4,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (index, context) {
-                    return  Column(
-                      children: [
-                        Row(
-                          children: [
-                            const CircleAvatar(
-                              minRadius: 5,
-                              maxRadius: 5,
-                              backgroundColor: Color(0xffE025E7),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Skiers and snowboarders welcome.',
-                              style: GoogleFonts.robotoSlab(
-                                  color: Colors.black,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
+                const SizedBox(
+                  height: 10,
+                ),
+                ListView.builder(
+                    itemCount: 4,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (index, context) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                minRadius: 5,
+                                maxRadius: 5,
+                                backgroundColor: Color(0xffE025E7),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Skiers and snowboarders welcome.',
+                                style: GoogleFonts.robotoSlab(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Prizes will be available for pick-up from the Whistler Pride Welcome Centre at the Aava Hotel.',
+                  style: GoogleFonts.robotoSlab(
+                      color: Colors.black,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w300),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(11),
+                      boxShadow: const [BoxShadow(blurRadius: 1)]),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Left side: Image
+                      Container(
+                        margin: const EdgeInsets.only(right: 16.0),
+                        child: Image.asset(
+                          'assets/images/imageis.png',
+                          width: 130.0,
+                          fit: BoxFit.cover,
                         ),
                         SizedBox(height: 10,)
                       ],
@@ -209,8 +243,8 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 10,),
@@ -255,8 +289,41 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                                     fontSize: 10,
                                     fontWeight: FontWeight.w300),
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Closest: Ian G. — Guessed Time: 24.82 Actual Time: 24.99',
+                                  style: GoogleFonts.robotoSlab(
+                                      color: Colors.black,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }),
+                const SizedBox(height: 10,),
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(11),
+                      boxShadow: const [BoxShadow(blurRadius: 1)]),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Left side: Image
+                      Container(
+                        margin: const EdgeInsets.only(right: 16.0),
+                        child: Image.asset(
+                          'assets/images/image.png',
+                          width: 130.0,
+                          fit: BoxFit.cover,
                         ),
                         SizedBox(height: 10,),
                       ],
@@ -343,11 +410,11 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
+        ) : const Center(child: CircularProgressIndicator(),);
+      }),
     );
   }
 }
