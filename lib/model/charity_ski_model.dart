@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class GetCharitySkiRaceModel {
   bool? status;
   String? message;
@@ -37,6 +39,7 @@ class Data {
   String? s2023CompanyLogo;
   String? promoBtnText;
   String? promoBtnUrl;
+  List<EventLatLong>? eventLatLong;
 
   Data(
       {this.charityTitle,
@@ -52,7 +55,8 @@ class Data {
         this.s2023CompanyDescription,
         this.s2023CompanyLogo,
         this.promoBtnText,
-        this.promoBtnUrl});
+        this.promoBtnUrl,
+        this.eventLatLong});
 
   Data.fromJson(Map<String, dynamic> json) {
     charityTitle = json['charity_title'];
@@ -69,6 +73,12 @@ class Data {
     s2023CompanyLogo = json['2023_company_logo'];
     promoBtnText = json['promo_btn_text'];
     promoBtnUrl = json['promo_btn_url'];
+    if (json['event_lat_long'] != null) {
+      eventLatLong = <EventLatLong>[];
+      json['event_lat_long'].forEach((v) {
+        eventLatLong!.add(new EventLatLong.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -87,6 +97,34 @@ class Data {
     data['2023_company_logo'] = this.s2023CompanyLogo;
     data['promo_btn_text'] = this.promoBtnText;
     data['promo_btn_url'] = this.promoBtnUrl;
+    if (this.eventLatLong != null) {
+      data['event_lat_long'] =
+          this.eventLatLong!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class EventLatLong {
+  String? eventTitle;
+  String? latitude;
+  String? longitude;
+  LatLng? latLong;
+
+  EventLatLong({this.eventTitle, this.latitude, this.longitude});
+
+  EventLatLong.fromJson(Map<String, dynamic> json) {
+    eventTitle = json['event_title'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    latLong = LatLng(double.tryParse(latitude.toString()) ?? 0 , double.tryParse(longitude.toString()) ?? 0);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['event_title'] = this.eventTitle;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     return data;
   }
 }
