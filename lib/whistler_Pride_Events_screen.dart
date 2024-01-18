@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
-import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
+import 'controller/getPrideEvents_controller.dart';
+
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -14,6 +17,43 @@ class WhistlerPrideEventsScreen extends StatefulWidget {
 }
 
 class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
+
+  final LatLng initialPosition = LatLng(50.1147609, -122.9600464);
+  GoogleMapController? controller;
+  Set<Marker> markers = Set();
+
+  final getPrideEventsController = Get.put(GetPrideEventsController());
+   bool isExpanded = false;
+  void addMarker(LatLng position, String title, String snippet) {
+    setState(() {
+      markers.add(
+        Marker(
+          markerId: MarkerId(position.toString()),
+          position: position,
+          infoWindow: InfoWindow(title: title, snippet: snippet),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan),
+        ),
+      );
+    });
+  }
+  List<LatLng> markerLocations = [];
+  void addMarkers() {
+    for (LatLng markerLocation in markerLocations) {
+      addMarker(markerLocation, 'Marker Title', 'Marker Description');
+    }
+  }
+@override
+  void initState() {
+    super.initState();
+    getPrideEventsController.getPrideEvents();
+  }
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,22 +68,32 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: CustomBottomNavigationBar
-            .build()
-            .items,
-      ),
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: CustomBottomNavigationBar
+      //       .build()
+      //       .items,
+      // ),
+      body: Obx(() {
+        return getPrideEventsController.statusOfGetEvents.value.isSuccess ?
+          SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/imagess.png'),
+              ClipRRect(
+                 borderRadius: BorderRadius.circular(6),
+                child: SizedBox(
+                  height: Get.height*.26,
+                  width: Get.width,
+                  child: Image.network(getPrideEventsController.getPrideEventsModel.value.data!.whistlerBanner.toString(),
+                  fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               const SizedBox(height: 10,),
-              const Text(
+               Text(
                 'Multiple Events & Tickets',
                 style: TextStyle(
                     color: Colors.black,
@@ -54,10 +104,12 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                 height: 190,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
+                    itemCount: getPrideEventsController.getPrideEventsModel.value.data!.eventsTicketsLists!.length,
                     shrinkWrap: true,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (index, context) {
-                      return  Container(
+                    itemBuilder: (context, index) {
+                      var item =  getPrideEventsController.getPrideEventsModel.value.data!.eventsTicketsLists![index];
+                      return Container(
                         width: 160,
                         padding: const EdgeInsets.all(16.0),
                         margin: const EdgeInsets.all(10),
@@ -72,14 +124,15 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                               ), //Offset
                               blurRadius: 0.5,
                               spreadRadius: 0.0,
-                            ),]),
+                            ),
+                            ]),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Left side: Image
                             Container(
-                              child: Image.asset(
-                                'assets/images/passes.png',
+                              child: Image.network(
+                                item.eventTicketImage.toString(),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -93,12 +146,17 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                               ),
                               child: Center(
                                   child: InkWell(
-                                    onTap: (){
-                                      Get.to(const ParadeandCommunityDayScreen());
+                                    onTap: () {
+                                      if(item.isAnotherUrl == true){
+                                        launchURL(item.eventTicketButtonUrl.toString());
+                                      }
+                                      else{
+                                        Get.to(()=>const ParadeandCommunityDayScreen());
+                                      }
                                     },
-                                    child: const Text(
-                                      'Buy Passes',
-                                      style: TextStyle(
+                                    child:  Text(
+                                      item.eventTicketButtonName.toString(),
+                                      style: const TextStyle(
                                           fontSize: 10, color: Colors.white),
                                     ),
                                   )),
@@ -164,9 +222,11 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                 height: 280,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
+                    itemCount: getPrideEventsController.getPrideEventsModel.value.data!.eventScheduleLists!.length,
                     shrinkWrap: true,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (index, context) {
+                    itemBuilder: (context, index) {
+                      var item = getPrideEventsController.getPrideEventsModel.value.data!.eventScheduleLists![index];
                       return Container(
                         width: 160,
                         padding: const EdgeInsets.all(16.0),
@@ -182,32 +242,33 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                               ), //Offset
                               blurRadius: 0.5,
                               spreadRadius: 0.0,
-                            ),]),
+                            ),
+                            ]),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Left side: Image
                             Expanded(
-                              child: Image.asset(
-                                'assets/images/passes.png',
+                              child: Image.network(
+                                item.eventImage.toString(),
                                 fit: BoxFit.cover,
                               ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            const Text.rich(
+                             Text.rich(
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: 'WELCOME PARTY',
+                                    text: item.eventTitle.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 8),
                                   ),
                                   TextSpan(
                                       text:
-                                      '- January 21, 2024 / 4:30 PM To 8:30 PM',
+                                      '- ${item.eventDate.toString()}',
                                       style: TextStyle(fontSize: 8)),
                                 ],
                               ),
@@ -215,8 +276,8 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                             const SizedBox(
                               height: 5,
                             ),
-                            const Text(
-                              'The festival’s official kick-of where guests mingle meet festival organizer Read More',
+                             Text(
+                               item.eventDescription.toString().substring(0, 70),
                               style: TextStyle(
                                   color: Colors.black, fontSize: 10),
                             ),
@@ -225,8 +286,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                             ),
 
                             InkWell(
-                              onTap:(){
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 30,
                                 width: 90,
@@ -247,10 +307,21 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                       );
                     }),
               ),
-            ],
+                    SizedBox(
+                      height: 200,
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(target: markerLocations.first, zoom: 14.0),
+                        onMapCreated: (GoogleMapController controller) {
+                          controller = controller;
+                          addMarkers();
+                        },
+                        markers: markers,
+                      ),
+                    ),
+                  ],
           ),
-        ),
-      ),
+        ) : const Center(child: CircularProgressIndicator());
+      }),
     );
   }
 }

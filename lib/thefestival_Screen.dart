@@ -217,14 +217,19 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                         scrollDirection: Axis.vertical,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return Flexible(
-                            child: Container(
-                              margin: const EdgeInsets.all(10),
-                              color: const Color(0xffE025E7),
-                              child: Center(
-                                child: Text(
-                                  model.value.data!.festivalMenu![index].menuTitle.toString(),
-                                  style: const TextStyle(fontSize: 10, color: Colors.white),
+                          return GestureDetector(
+                            onTap: (){
+                              Get.to(()=> const WhistlerPrideEventsScreen());
+                            },
+                            child: Flexible(
+                              child: Container(
+                                margin: const EdgeInsets.all(10),
+                                color: const Color(0xffE025E7),
+                                child: Center(
+                                  child: Text(
+                                    model.value.data!.festivalMenu![index].menuTitle.toString(),
+                                    style: const TextStyle(fontSize: 10, color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
