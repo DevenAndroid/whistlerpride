@@ -260,7 +260,7 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                 if( model.value.data!.festivalMenu![index].menuTitle == "Things To Do In Whistler"){
                                   Get.to(()=> WhistlerThingsScreen());
                                 }
-                                if( model.value.data!.festivalMenu![index].menuTitle == "TWhistler Pride Eats"){
+                                if( model.value.data!.festivalMenu![index].menuTitle == "Whistler Pride Eats"){
                                   Get.to(()=> WhistlerPrideEatsScreen());
                                 }
                               },
