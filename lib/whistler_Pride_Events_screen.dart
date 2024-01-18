@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
+import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -28,20 +29,9 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.festival_outlined),
-            label: 'Festival',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.question_mark),
-            label: 'ACCOMMODATIONS',
-          ),
-        ],
+        items: CustomBottomNavigationBar
+            .build()
+            .items,
       ),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),

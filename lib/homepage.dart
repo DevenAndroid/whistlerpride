@@ -62,6 +62,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final double itemHeight = (size.height - kToolbarHeight - 24) / 7;
+    final double itemWidth = size.width / 2;
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -69,55 +72,13 @@ class _HomePageState extends State<HomePage> {
             elevation: 0,
             leadingWidth: 120,
             leading: Padding(
-              padding: const EdgeInsets.only(top: 6, left: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: const Row(
-                      children: [
-                        Icon(Icons.location_on),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Home",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.black,
-                          size: 25,
-                        )
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "jaipur, Rajasthan",
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.only(left: 10),
+              child: Image.asset(
+                'assets/images/logo.png',
+                height: 30,
+                width: 100,
               ),
             ),
-            title: Image.asset(
-              'assets/images/logo.png',
-              height: 30,
-              width: 100,
-            ),
-            centerTitle: true,
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 10),
@@ -185,7 +146,9 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ), //Drawer
-        body: Obx(() {
+
+
+    body: Obx(() {
           return isDataLoading.value
               ? SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
@@ -198,8 +161,15 @@ class _HomePageState extends State<HomePage> {
                         Stack(children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              model.value.data!.homeBanner.toString(),
+                            child: ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0.4), // Replace with your desired color and opacity
+                                BlendMode.srcATop,
+                              ),
+                              child: Image.network(
+                                model.value.data!.homeBanner.toString(),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Container(
@@ -372,14 +342,14 @@ class _HomePageState extends State<HomePage> {
                                                           ? "The Festival"
                                                           : dropDownValue2.value
                                                               .toString(),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.center,
+                                                      overflow: TextOverflow.ellipsis, // Ensure text doesn't overflow
                                                       maxLines: 1,
                                                       style: GoogleFonts
                                                           .robotoSlab(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 13,
+                                                              fontSize: 11,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400),
@@ -391,7 +361,7 @@ class _HomePageState extends State<HomePage> {
                                           );
                                         }),
                                         const SizedBox(
-                                          width: 10,
+                                          width: 1,
                                         ),
                                         Expanded(
                                           child: const Icon(
@@ -502,7 +472,7 @@ class _HomePageState extends State<HomePage> {
                                                           .robotoSlab(
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 13,
+                                                              fontSize: 11,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400),
@@ -514,7 +484,7 @@ class _HomePageState extends State<HomePage> {
                                           );
                                         }),
                                         const SizedBox(
-                                          width: 10,
+                                          width: 1,
                                         ),
                                         Expanded(
                                           child: const Icon(
@@ -638,24 +608,36 @@ class _HomePageState extends State<HomePage> {
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width,
-                                                height: 100,
+                                                height: 150,
                                               ),
                                             ),
                                             const SizedBox(
                                               height: 10,
                                             ),
-
-                                            Text(
-                                              model
-                                                  .value
-                                                  .data!
-                                                  .festivalCountdownList![index]
-                                                  .festivalMessage
-                                                  .toString().substring(70),
-                                              style: GoogleFonts.robotoSlab(
-                                                  color: Colors.black,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w300),
+                                            Text.rich(
+                                              TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: model
+                                                        .value
+                                                        .data!
+                                                        .festivalCountdownList![index]
+                                                        .festivalMessage
+                                                        .toString().substring(0,70),
+                                                    style: GoogleFonts.robotoSlab(
+                                                        color: Colors.black,
+                                                        fontSize: 11,
+                                                        fontWeight: FontWeight.w300),
+                                                  ),
+                                                  TextSpan(
+                                                    text: ' Read More',
+                                                    style: GoogleFonts.robotoSlab(
+                                                        color: Color(0xFFE025E7),
+                                                        fontSize: 10,
+                                                        fontWeight: FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             const SizedBox(
                                               height: 10,
@@ -667,7 +649,7 @@ class _HomePageState extends State<HomePage> {
                                         height: 10,
                                       ),
                                       Positioned(
-                                        bottom: 8,
+                                        bottom: 20,
                                         left: 10,
                                         child: InkWell(
                                           onTap: () {
@@ -866,16 +848,18 @@ class _HomePageState extends State<HomePage> {
                         ),
                         GridView.builder(
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                          SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3, // Number of columns
                             crossAxisSpacing: 10.0, // Spacing between columns
                             mainAxisSpacing: 9.0, // Spacing between rows
+                                childAspectRatio: (itemWidth / itemHeight),
                           ),
                           itemCount: model.value.data!.festivalPartners!.length,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return Container(
+                              padding: const EdgeInsets.only(left: 10,right: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.black)),
@@ -883,7 +867,7 @@ class _HomePageState extends State<HomePage> {
                                 model.value.data!.festivalPartners![index]
                                     .partnerImage
                                     .toString(),
-                                fit: BoxFit.fill,
+                                fit: BoxFit.contain,
                               ),
                             );
                           },

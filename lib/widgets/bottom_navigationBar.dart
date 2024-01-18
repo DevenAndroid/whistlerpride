@@ -6,25 +6,36 @@ import 'package:whistlerpride/thefestival_Screen.dart';
 class CustomBottomNavigationBar {
   static BottomNavigationBar build() {
     return BottomNavigationBar(
-      items:  [
+      items: [
         BottomNavigationBarItem(
           icon: InkWell(
-              onTap: (){
-                Get.to(()=> HomePage());
-              },
-              child: Icon(Icons.home)),
+            onTap: () {
+              Get.to(() => HomePage());
+            },
+            child: Image.asset(
+              'assets/images/home.png',
+              height: 25,
+            ),
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: InkWell(
-              onTap: (){
-                Get.to(()=> TheFestivalScreen());
-              },
-              child: Icon(Icons.festival_outlined)),
+            onTap: () {
+              Get.to(() => TheFestivalScreen());
+            },
+            child: Image.asset(
+              'assets/images/festival.png',
+              height: 25,
+            ),
+          ),
           label: 'Festival',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.question_mark),
+          icon: Image.asset(
+            'assets/images/acc.png',
+            height: 25,
+          ),
           label: 'Accommodations',
         ),
       ],

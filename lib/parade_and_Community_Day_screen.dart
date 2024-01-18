@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 
 import 'CharitySkiRace_screen.dart';
 
@@ -27,20 +28,9 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.festival_outlined),
-            label: 'Festival',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.question_mark),
-            label: 'ACCOMMODATIONS',
-          ),
-        ],
+        items: CustomBottomNavigationBar
+            .build()
+            .items,
       ),
 
       body: SingleChildScrollView(

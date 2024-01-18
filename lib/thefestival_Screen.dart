@@ -102,23 +102,29 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                   offset: Offset(
                                     0.5,
                                     0.5,
-                                  ), //Offset
-                                  blurRadius: 0.5,
-                                  spreadRadius: 0.0,
+                                  ),
+                                  blurRadius: 3,
+                                  spreadRadius: 1,
                                 ),
-                              ]),
+                              ]
+                          ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Left side: Image
                               Container(
                                 margin: const EdgeInsets.only(right: 16.0),
-                                child: Image.network(
-                                  model.value.data!.festivalLists![index]
-                                      .festivalImage
-                                      .toString(),
-                                  width: 130.0,
-                                  fit: BoxFit.cover,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(11),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(11),
+                                  child: Image.network(
+                                    model.value.data!.festivalLists![index].festivalImage.toString(),
+                                    width: 130.0,
+                                    height: 140,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -130,9 +136,9 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                       model.value.data!.festivalLists![index]
                                           .festivalTitle
                                           .toString(),
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
 
@@ -146,18 +152,18 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                                 .festivalLists![index]
                                                 .festivalMessage
                                                 .toString()
-                                                .substring(0, 50),
+                                                .substring(0, 120),
                                             style: GoogleFonts.robotoSlab(
                                                 color: Colors.black,
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w300),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w600),
                                           ),
                                           TextSpan(
                                             text: ' Read More',
                                             style: GoogleFonts.robotoSlab(
                                                 color: Color(0xFFE025E7),
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w600),
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w300),
                                           ),
                                         ],
                                       ),
@@ -209,19 +215,19 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                 mainAxisExtent: 60,
                                 mainAxisSpacing: 1.0),
                         scrollDirection: Axis.vertical,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.all(10),
-                            padding: const EdgeInsets.only(left: 10, right: 10),
-                            color: const Color(0xffE025E7),
-                            child: Center(
+                          return Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              color: const Color(0xffE025E7),
+                              child: Center(
                                 child: Text(
-                              model.value.data!.festivalMenu![index].menuTitle
-                                  .toString(),
-                              style: const TextStyle(
-                                  fontSize: 10, color: Colors.white),
-                            )),
+                                  model.value.data!.festivalMenu![index].menuTitle.toString(),
+                                  style: const TextStyle(fontSize: 10, color: Colors.white),
+                                ),
+                              ),
+                            ),
                           );
                         })
                   ],
