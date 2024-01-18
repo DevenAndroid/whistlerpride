@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/model/homePageModel.dart';
-import 'package:whistlerpride/thefestival_Screen.dart';
 import 'package:whistlerpride/widgets/apptheme.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'dart:ui' as ui;
@@ -126,29 +125,28 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.question_mark),
                 title: const Text('FAQs '),
                 onTap: () {
-                  Get.to(FaqScreen());
+                  Get.to(const FaqScreen());
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.call),
                 title: const Text('Contact Us '),
                 onTap: () {
-                  Get.to(ContactScreen());
+                  Get.to(const ContactScreen());
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.notification_important),
                 title: const Text('Notifications '),
                 onTap: () {
-                  Get.to(NotificationScreen());
+                  Get.to(const NotificationScreen());
                 },
               ),
             ],
           ),
         ), //Drawer
 
-
-    body: Obx(() {
+        body: Obx(() {
           return isDataLoading.value
               ? SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
@@ -163,7 +161,8 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10),
                             child: ColorFiltered(
                               colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.4), // Replace with your desired color and opacity
+                                Colors.black.withOpacity(
+                                    0.4), // Replace with your desired color and opacity
                                 BlendMode.srcATop,
                               ),
                               child: Image.network(
@@ -223,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     )),
-                                SizedBox(
+                                const SizedBox(
                                   width: 6,
                                 ),
                                 Expanded(
@@ -342,8 +341,10 @@ class _HomePageState extends State<HomePage> {
                                                           ? "The Festival"
                                                           : dropDownValue2.value
                                                               .toString(),
-                                                      textAlign: TextAlign.center,
-                                                      overflow: TextOverflow.ellipsis, // Ensure text doesn't overflow
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      overflow: TextOverflow
+                                                          .ellipsis, // Ensure text doesn't overflow
                                                       maxLines: 1,
                                                       style: GoogleFonts
                                                           .robotoSlab(
@@ -363,8 +364,8 @@ class _HomePageState extends State<HomePage> {
                                         const SizedBox(
                                           width: 1,
                                         ),
-                                        Expanded(
-                                          child: const Icon(
+                                        const Expanded(
+                                          child: Icon(
                                             Icons.keyboard_arrow_down_rounded,
                                             color: Colors.black,
                                           ),
@@ -486,8 +487,8 @@ class _HomePageState extends State<HomePage> {
                                         const SizedBox(
                                           width: 1,
                                         ),
-                                        Expanded(
-                                          child: const Icon(
+                                        const Expanded(
+                                          child: Icon(
                                             Icons.keyboard_arrow_down_rounded,
                                             color: Colors.black,
                                           ),
@@ -513,7 +514,7 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 17,
                             ),
                             Row(
@@ -559,7 +560,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 13,
                         ),
                         SizedBox(
@@ -586,7 +587,7 @@ class _HomePageState extends State<HomePage> {
                                               BoxShadow(
                                                   blurRadius: 5,
                                                   color: Colors.grey.shade200,
-                                                  offset: Offset(4, 4)),
+                                                  offset: const Offset(4, 4)),
                                             ]),
                                         child: Column(
                                           crossAxisAlignment:
@@ -621,20 +622,29 @@ class _HomePageState extends State<HomePage> {
                                                     text: model
                                                         .value
                                                         .data!
-                                                        .festivalCountdownList![index]
+                                                        .festivalCountdownList![
+                                                            index]
                                                         .festivalMessage
-                                                        .toString().substring(0,70),
-                                                    style: GoogleFonts.robotoSlab(
-                                                        color: Colors.black,
-                                                        fontSize: 11,
-                                                        fontWeight: FontWeight.w300),
+                                                        .toString()
+                                                        .substring(0, 70),
+                                                    style:
+                                                        GoogleFonts.robotoSlab(
+                                                            color: Colors.black,
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w300),
                                                   ),
                                                   TextSpan(
                                                     text: ' Read More',
-                                                    style: GoogleFonts.robotoSlab(
-                                                        color: Color(0xFFE025E7),
-                                                        fontSize: 10,
-                                                        fontWeight: FontWeight.w600),
+                                                    style:
+                                                        GoogleFonts.robotoSlab(
+                                                            color: const Color(
+                                                                0xFFE025E7),
+                                                            fontSize: 10,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
                                                   ),
                                                 ],
                                               ),
@@ -670,7 +680,7 @@ class _HomePageState extends State<HomePage> {
                                             // Get.to(const TheFestivalScreen());
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.all(6),
+                                            padding: const EdgeInsets.all(6),
                                             height: 30,
                                             // width: 100,
                                             decoration: BoxDecoration(
@@ -695,7 +705,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ]),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     )
                                   ],
@@ -848,18 +858,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                         GridView.builder(
                           gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3, // Number of columns
                             crossAxisSpacing: 10.0, // Spacing between columns
                             mainAxisSpacing: 9.0, // Spacing between rows
-                                childAspectRatio: (itemWidth / itemHeight),
+                            childAspectRatio: (itemWidth / itemHeight),
                           ),
                           itemCount: model.value.data!.festivalPartners!.length,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return Container(
-                              padding: const EdgeInsets.only(left: 10,right: 10),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(color: Colors.black)),
@@ -876,7 +887,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 )
-              : Center(
+              : const Center(
                   child: CircularProgressIndicator(
                   color: AppTheme.primaryColor,
                 ));
