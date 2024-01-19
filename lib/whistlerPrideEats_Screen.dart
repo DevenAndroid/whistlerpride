@@ -97,7 +97,7 @@ class _WhistlerPrideEatsScreenState extends State<WhistlerPrideEatsScreen> {
                           if (item.isAnotherUrl == true) {
                             launchURL(item.buttonUrl.toString());
                           } else {
-                            Get.to(()=>const BOOKACCOMMODATIONSScreen());
+                            Get.to(()=>const AccommodationScreen());
                           }
                         },
                         child: Container(

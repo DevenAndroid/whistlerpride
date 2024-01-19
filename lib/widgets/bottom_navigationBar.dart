@@ -20,7 +20,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   final pages = [
     const HomePage(),
     const TheFestivalScreen(),
-    BOOKACCOMMODATIONSScreen(),
+    const AccommodationScreen(),
 
   ];
 
@@ -92,14 +92,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
                             "Home",
                             style: GoogleFonts.robotoSlab(
                                 color: AppTheme.notification,
-                                fontSize: 12,
+                                fontSize: 11,
                                 fontWeight: FontWeight.w500),
                           )
                               : Text(
                             "Home",
                             style: GoogleFonts.robotoSlab(
                                 color: const Color(0xFF000000),
-                                fontSize: 12,
+                                fontSize: 11,
                                 fontWeight: FontWeight.w300),
                           )
                         ],
@@ -135,14 +135,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
                             "Festival",
                             style: GoogleFonts.robotoSlab(
                                 color: AppTheme.notification,
-                                fontSize: 12,
+                                fontSize: 11,
                                 fontWeight: FontWeight.w500),
                           )
                               :  Text(
                             "Festival",
                             style: GoogleFonts.robotoSlab(
                                 color: const Color(0xFF000000),
-                                fontSize: 12,
+                                fontSize: 11,
                                 fontWeight: FontWeight.w300),
                           )
                         ],
@@ -180,14 +180,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
                               "ACCOMMODATIONS",
                               style: GoogleFonts.robotoSlab(
                                   color: AppTheme.notification,
-                                  fontSize: 12,
+                                  fontSize: 11,
                                   fontWeight: FontWeight.w500),
                             )
                                 :  Text(
                               "ACCOMMODATIONS",
                               style: GoogleFonts.robotoSlab(
                                   color: const Color(0xFF000000),
-                                  fontSize: 12,
+                                  fontSize: 11,
                                   fontWeight: FontWeight.w300),
                             )
                           ],

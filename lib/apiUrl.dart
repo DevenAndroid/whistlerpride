@@ -11,4 +11,7 @@ class ApiUrl {
   static const getPrideEat = "${baseUrl}get_whistler_pride_eats";
   static const getPrideCharity = "${baseUrl}get_charity_ski_race_data";
   static const getParadeUrl = "${baseUrl}get_parade_community_day";
+  static const getcontactUSUrl = "${baseUrl}contact_us";
+  static const postcontactUSUrl = "${baseUrl}send_mail_to_admin";
+  static const AccommodationsModelUSUrl = "${baseUrl}get_accommodations";
 }

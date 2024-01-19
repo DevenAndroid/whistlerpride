@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'package:whistlerpride/widgets/common_text_field.dart';
 
 class HosthotelScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
             onTap: () {
               Get.back();
             },
-            child:  Icon(Icons.arrow_back,color: Colors.black,)),
+            child:  const Icon(Icons.arrow_back,color: Colors.black,)),
         title: const Text(
           'Host hotel',
           style: TextStyle(color: Colors.black, fontSize: 16),
@@ -50,9 +50,9 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'The Aava Whistler Hotel - Your Festival Basecamp',
-                style: TextStyle(
+                style: GoogleFonts.oswald(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w500),
@@ -60,9 +60,9 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'We’ve negotiated a great low rate for Whistler Pride guests to make the Aava Whistler Hotel the best place to stay during Whistler Pride.',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                     color: Colors.black,
                     fontSize: 11,
                     fontWeight: FontWeight.w300),
@@ -70,9 +70,9 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Stay where the action is! Get easy access to our welcome centre, event shuttle pick-up/drop-off, and be only few steps away from the event venue for our biggest events. A two-minute walk from Whistler Village, a five-minute stroll from the Whistler and Blackcomb Mountain gondolas.. Read More',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                     color: Colors.black,
                     fontSize: 11,
                     fontWeight: FontWeight.w300),
@@ -86,24 +86,27 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
                 },
                 child: Container(
                   height: 35,
-                  width: 100,
+                  width: 120,
                   decoration: BoxDecoration(
                       color: const Color(0xffE025E7),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Center(
+                      borderRadius: BorderRadius.circular(3)),
+                  child: Center(
                       child: Text(
                         'Book Now',
                         style:
-                        TextStyle(fontSize: 10, color: Colors.white),
+                        GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
                       )),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+              Text(
                 'NOT SEEING WHAT YOU ARE LOOKING FOR?',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                     color: Colors.black,
                     fontSize: 17,
                     fontWeight: FontWeight.w500),
@@ -111,66 +114,70 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Name',
                 style:
-                TextStyle(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
+                GoogleFonts.robotoSlab(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
               ),
               const SizedBox(
                 height: 10,
               ),
-              RegisterTextFieldWidget(
+              const RegisterTextFieldWidget(
                 hint: 'Enter your Name',
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Email',
                 style:
-                TextStyle(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
+                GoogleFonts.robotoSlab(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
               ),
               const SizedBox(
                 height: 10,
               ),
-              RegisterTextFieldWidget(
+              const RegisterTextFieldWidget(
                 hint: 'Enter your Email',
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Message',
                 style:
-                TextStyle(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
+                GoogleFonts.robotoSlab(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
               ),
               const SizedBox(
                 height: 10,
               ),
-              RegisterTextFieldWidget(
+              const RegisterTextFieldWidget(
                 hint: 'Message',
                 maxLines: 5,
                 minLines: 5,
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               InkWell(
                 onTap: (){
                   Get.to(const HosthotelScreen());
                 },
                 child: Container(
                   height: 35,
-                  width: 100,
+                  width: 120,
                   decoration: BoxDecoration(
                       color: const Color(0xffE025E7),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Center(
+                      borderRadius: BorderRadius.circular(3)),
+                  child: Center(
                       child: Text(
                         'Send',
                         style:
-                        TextStyle(fontSize: 10, color: Colors.white),
+                        GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
                       )),
                 ),
               ),
+              const SizedBox(height: 20,),
               SizedBox(
                 height: 200,
                 child: GoogleMap(

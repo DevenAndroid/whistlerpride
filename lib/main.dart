@@ -6,9 +6,12 @@ import 'package:whistlerpride/whistler_thing%20screen.dart';
 import 'package:whistlerpride/youth_programming.dart';
 
 import 'about_ur.dart';
+import 'bOOKACCOMMODATIONS_screen.dart';
+import 'bOOKACCOMMODATIONStwo_Screen.dart';
 import 'contact_screen.dart';
 import 'faq_screen.dart';
 import 'homepage.dart';
+import 'host _hotel_screen.dart';
 import 'notification.dart';
 
 void main() {
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home: const SplashScreen(),
+      home: const AccommodationScreen(),
     );
   }
 }

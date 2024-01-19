@@ -146,7 +146,7 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                           if (item.isAnotherUrl == true) {
                             launchURL(item.buttonUrl.toString());
                           } else {
-                            Get.to(()=>const BOOKACCOMMODATIONSScreen());
+                            Get.to(()=>const AccommodationScreen());
                           }
                         },
                         child: Container(

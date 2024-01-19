@@ -123,7 +123,7 @@ class _YouthProgrammingScreenState extends State<YouthProgrammingScreen> {
                           if (item.isAnotherUrl == true) {
                             launchURL(item.buttonUrl.toString());
                           } else {
-                            Get.to(()=>const BOOKACCOMMODATIONSScreen());
+                            Get.to(()=>const AccommodationScreen());
                           }
                         },
                         child: Container(
