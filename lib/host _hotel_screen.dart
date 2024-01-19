@@ -25,12 +25,28 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
 
   Rx<RxStatus> statusOfGetHostHotel = RxStatus.empty().obs;
   Rx<ModelHostHotel> getHostHotel = ModelHostHotel().obs;
-
+  Set<Marker> markers = {};
+  void addMarker({required LatLng position, required String title}) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(position.toString()),
+        position: position,
+        infoWindow: InfoWindow(title: title),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ),
+    );
+  }
   Future getCharityRace() async {
     statusOfGetHostHotel.value = RxStatus.empty();
     await getHostHotelRepo().then((value) {
       statusOfGetHostHotel.value = RxStatus.success();
       getHostHotel.value = value;
+      for(var element in getHostHotel.value.data!.hostHotelLatLong!){
+        addMarker(
+            title: element.eventTitle.toString(),
+            position: element.latLong!
+        );
+      }
     });
   }
 
@@ -254,15 +270,16 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
                       )),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 200,
                 child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: _center,
-                    zoom: 10.0,
-                  ),
+                  initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                  onMapCreated: (GoogleMapController controller) {
+                  },
+                  markers: markers,
                 ),
               ),
       ],
