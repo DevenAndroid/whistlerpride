@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/model/homePageModel.dart';
@@ -43,15 +44,15 @@ class _HomePageState extends State<HomePage> {
       selectedValue1 = options.isNotEmpty ? options[0] : null;
     });
   }
-  //
-  // Future<void> _launchInBrowser(Uri url) async {
-  //   if (!await launchUrl(
-  //     url,
-  //     mode: LaunchMode.externalApplication,
-  //   )) {
-  //     throw Exception('Could not launch $url');
-  //   }
-  // }
+
+   Future<void> _launchInBrowser(Uri url) async {
+     if (!await launchUrl(
+       url,
+       mode: LaunchMode.externalApplication,
+     )) {
+       throw Exception('Could not launch $url');
+     }
+   }
 
   @override
   void initState() {
@@ -681,12 +682,12 @@ class _HomePageState extends State<HomePage> {
                                                         index]
                                                     .isAnotherUrl ==
                                                 true) {
-                                              // _launchInBrowser(Uri.parse(model
-                                              //     .value
-                                              //     .data!
-                                              //     .festivalCountdownList![index]
-                                              //     .festivalButtonUrl
-                                              //     .toString()));
+                                             _launchInBrowser(Uri.parse(model
+                                                 .value
+                                                 .data!
+                                                 .festivalCountdownList![index]
+                                                 .festivalButtonUrl
+                                                 .toString()));
                                             }
                                             // Get.to(const TheFestivalScreen());
                                           },

@@ -130,7 +130,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                   height: 10,
                 ),
                 Text(
-                  getCharityController.getCharityModel.value.data!.s2024WelcomingTitle.toString(),
+                  getCharityController.getCharityModel.value.data!.charity2024WelcomingTitle.toString(),
                   style: GoogleFonts.oswald(
                       color: Colors.black,
                       fontSize: 18,
@@ -144,7 +144,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                     children: [
                       TextSpan(
                         text:
-                       getCharityController.getCharityModel.value.data!.s2024WelcomingDescription.toString().substring(0,120),
+                       getCharityController.getCharityModel.value.data!.charity2024WelcomingDescription.toString().substring(0,120),
                         style:
                         GoogleFonts.robotoSlab(fontWeight: FontWeight.w300, fontSize: 11, height: 1.5, color: Colors.black),
                       ),
@@ -160,10 +160,11 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                   height: 10,
                 ),
                 ListView.builder(
-                    itemCount: 4,
+                    itemCount:  getCharityController.getCharityModel.value.data!.charity2024WelcomingList!.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (index, context) {
+                    itemBuilder: (context, index) {
+                      var item =  getCharityController.getCharityModel.value.data!.charity2024WelcomingList![index];
                       return Column(
                         children: [
                           Row(
@@ -177,7 +178,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                                 width: 10,
                               ),
                               Text(
-                                'Skiers and snowboarders welcome.',
+                                item.disList.toString(),
                                 style: GoogleFonts.robotoSlab(
                                     color: Colors.black,
                                     fontSize: 10,
@@ -193,14 +194,14 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                   height: 10,
                 ),
                 Text(
-                  'Prizes will be available for pick-up from the Whistler Pride Welcome Centre at the Aava Hotel.',
+                  getCharityController.getCharityModel.value.data!.charity2024WelcomingExtraDes.toString(),
                   style: GoogleFonts.robotoSlab(
                       color: Colors.black,
                       fontSize: 11,
                       height: 1.5,
                       fontWeight: FontWeight.w300),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   // margin: const EdgeInsets.all(10),
@@ -216,7 +217,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                       Container(
                         margin: const EdgeInsets.only(right: 16.0),
                         child: Image.network(
-                            getCharityController.getCharityModel.value.data!.s2024CompanyLogo.toString(),
+                            getCharityController.getCharityModel.value.data!.charity2024CompanyLogo.toString(),
                           width: 130.0,
                           fit: BoxFit.cover,
                         ),
@@ -226,7 +227,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: '${getCharityController.getCharityModel.value.data!.s2024CompanyTitle.toString()} :-',
+                                text: '${getCharityController.getCharityModel.value.data!.charity2024CompanyTitle.toString()} :-',
                                 style: GoogleFonts.robotoSlab(
                                     color: Colors.black,
                                     fontSize: 11,
@@ -237,7 +238,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
 
                               TextSpan(
                                 text:
-                                getCharityController.getCharityModel.value.data!.s2024CompanyDescription.toString().substring(0,100),
+                                getCharityController.getCharityModel.value.data!.charity2024CompanyDescription.toString().substring(0,100),
                                 style: GoogleFonts.robotoSlab(
                                     color: Colors.black,
                                     fontSize: 10,
@@ -258,7 +259,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                  getCharityController.getCharityModel.value.data!.s2023WelcomingTitle.toString(),
+                  getCharityController.getCharityModel.value.data!.charity2023WelcomingTitle.toString(),
                   style: GoogleFonts.oswald(
                       color: Colors.black,
                       fontSize: 18,
@@ -266,7 +267,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                  getCharityController.getCharityModel.value.data!.s2024CompanyDescription.toString(),
+                  getCharityController.getCharityModel.value.data!.charity2024CompanyDescription.toString(),
                   style: GoogleFonts.robotoSlab(
                       color: Colors.black,
                       fontSize: 11,
@@ -274,10 +275,11 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                 ),
                 const SizedBox(height: 10,),
                 ListView.builder(
-                    itemCount: 4,
+                    itemCount: getCharityController.getCharityModel.value.data!.winnerTimeList!.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (index, context) {
+                    itemBuilder: (context, index) {
+                      var item = getCharityController.getCharityModel.value.data!.winnerTimeList![index];
                       return Column(
                         children: [
                           Row(
@@ -292,7 +294,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Closest: Ian G. — Guessed Time: 24.82 Actual Time: 24.99',
+                                  item.raceList.toString(),
                                   style: GoogleFonts.robotoSlab(
                                       color: Colors.black,
                                       fontSize: 10,
@@ -328,7 +330,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                       Expanded(
                         child: ClipRRect(
                           child: Image.network(
-                            getCharityController.getCharityModel.value.data!.s2023CompanyLogo.toString(),
+                            getCharityController.getCharityModel.value.data!.charity2023CompanyLogo.toString(),
                             width: 130.0,
                             fit: BoxFit.cover,
                           ),
@@ -342,7 +344,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                             SizedBox(height: 3,),
                             // Title
                             Text(
-                              getCharityController.getCharityModel.value.data!.s2023CompanyTitle.toString(),
+                              getCharityController.getCharityModel.value.data!.charity2023CompanyTitle.toString(),
                               style: GoogleFonts.roboto(
                                   color: const Color(0xFF000000),
                                   fontSize: 15,
@@ -355,7 +357,7 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: getCharityController.getCharityModel.value.data!.s2023CompanyDescription.toString().substring(0,120),
+                                    text: getCharityController.getCharityModel.value.data!.charity2023CompanyDescription.toString().substring(0,120),
                                     style:
                                     GoogleFonts.robotoSlab(fontWeight: FontWeight.w300, fontSize: 11, height: 1.5, color: Colors.black),
                                   ),
@@ -385,7 +387,8 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                                 ),
                                 child: Center(
                                     child: Text(
-                                    getCharityController.getCharityModel.value.data!.promoBtnText.toString(),
+                                        getCharityController.getCharityModel.value.data!.promoBtnText == '' ?
+                                     'LIFT TICKETS' :  getCharityController.getCharityModel.value.data!.promoBtnText.toString(),
                                       style: GoogleFonts.roboto(
                                           color: const Color(0xFFFFFFFF),
                                           fontSize: 11,

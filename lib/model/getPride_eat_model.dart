@@ -1,6 +1,8 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class GetPrideEatModel {
   bool? status;
-  String? message;
+  dynamic message;
   Data? data;
 
   GetPrideEatModel({this.status, this.message, this.data});
@@ -23,8 +25,8 @@ class GetPrideEatModel {
 }
 
 class Data {
-  String? prideEatsTitle;
-  String? prideEatBanner;
+  dynamic prideEatsTitle;
+  dynamic prideEatBanner;
   List<PrideEats>? prideEats;
   List<PrideEatsLatLong>? prideEatsLatLong;
 
@@ -67,14 +69,14 @@ class Data {
 }
 
 class PrideEats {
-  String? prideEatImage;
-  String? prideEatTitle;
-  String? prideEatDescription;
-  String? placeAndNumber;
-  String? buttonName;
-  String? buttonUrl;
-  String? latitude;
-  String? longitude;
+  dynamic prideEatImage;
+  dynamic prideEatTitle;
+  dynamic prideEatDescription;
+  dynamic placeAndNumber;
+  dynamic buttonName;
+  dynamic buttonUrl;
+  dynamic latitude;
+  dynamic longitude;
   bool? isAnotherUrl;
 
   PrideEats(
@@ -116,9 +118,10 @@ class PrideEats {
 }
 
 class PrideEatsLatLong {
-  String? eventTitle;
-  String? latitude;
-  String? longitude;
+  dynamic eventTitle;
+  dynamic latitude;
+  dynamic longitude;
+  LatLng? latLong;
 
   PrideEatsLatLong({this.eventTitle, this.latitude, this.longitude});
 
@@ -126,6 +129,7 @@ class PrideEatsLatLong {
     eventTitle = json['event_title'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    latLong = LatLng(double.tryParse(latitude.toString()) ?? 0 , double.tryParse(longitude.toString()) ?? 0);
   }
 
   Map<String, dynamic> toJson() {

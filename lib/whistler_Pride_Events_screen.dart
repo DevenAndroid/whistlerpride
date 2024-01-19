@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
 import 'controller/getPrideEvents_controller.dart';
+import 'dart:ui' as ui;
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -17,6 +18,7 @@ class WhistlerPrideEventsScreen extends StatefulWidget {
 
 class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
   final LatLng initialPosition = LatLng(50.1147609, -122.9600464);
+  ScrollController _scrollController = ScrollController();
   GoogleMapController? controller;
   Set<Marker> markers = {};
 
@@ -66,9 +68,12 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
               Get.back();
             },
             child:  Icon(Icons.arrow_back,color: Colors.black,)),
-        title: const Text(
+        title:  Text(
           'Whistler Pride Events',
-          style: TextStyle(color: Colors.black, fontSize: 16),
+            style: GoogleFonts.oswald(
+            color: Colors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.w400),
         ),
       ),
       body: Obx(() {
@@ -80,26 +85,51 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: SizedBox(
-                        height: Get.height * .26,
-                        width: Get.width,
-                        child: Image.network(
-                          getPrideEventsController.getPrideEventsModel.value.data!.whistlerBanner.toString(),
-                          fit: BoxFit.cover,
+                    Stack(children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: SizedBox(
+                          height: Get.height * .23,
+                          width: Get.width,
+                          child: Image.network(
+                            getPrideEventsController.getPrideEventsModel.value.data!.whistlerBanner.toString(),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
+                      Positioned.fill(
+                        top: Get.height*.17,
+                        left: 10,
+                        child: Text(
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textAlign: TextAlign.start,
+                          getPrideEventsController.getPrideEventsModel.value.data!.whistlerTitle.toString(),
+                          style: GoogleFonts.oswald(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+
+
+                    ]),
+
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Multiple Events & Tickets',
-                      style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.oswald(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(
+                      height: 12,
                     ),
                     SizedBox(
-                      height: 190,
+                      height: 175,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: getPrideEventsController.getPrideEventsModel.value.data!.eventsTicketsLists!.length,
@@ -107,118 +137,149 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             var item = getPrideEventsController.getPrideEventsModel.value.data!.eventsTicketsLists![index];
-                            return Container(
-                              width: 160,
-                              padding: const EdgeInsets.all(16.0),
-                              margin: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(
-                                        0.5,
-                                        0.5,
-                                      ), //Offset
-                                      blurRadius: 0.5,
-                                      spreadRadius: 0.0,
-                                    ),
-                                  ]),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Left side: Image
-                                  Container(
-                                    child: Image.network(
-                                      item.eventTicketImage.toString(),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: 30,
-                                    width: 90,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3),
-                                      color: const Color(0xffE025E7),
-                                    ),
-                                    child: Center(
-                                        child: InkWell(
-                                      onTap: () {
-                                        if (item.isAnotherUrl == true) {
-                                          launchURL(item.eventTicketButtonUrl.toString());
-                                        } else {
-                                          Get.to(() => const ParadeandCommunityDayScreen());
-                                        }
-                                      },
-                                      child: Text(
-                                        item.eventTicketButtonName.toString(),
-                                        style: const TextStyle(fontSize: 10, color: Colors.white),
+                            return Row(
+                              children: [
+                                Container(
+                                  width: 162,
+                                  height: 169,
+                                  padding: const EdgeInsets.all(10.0),
+
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black26,
+                                          offset: Offset(
+                                            0.5,
+                                            0.5,
+                                          ), //Offset
+                                          blurRadius: 0.5,
+                                          spreadRadius: 0.0,
+                                        ),
+                                      ]),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      // Left side: Image
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          item.eventTicketImage.toString(),
+                                          fit: BoxFit.fill,
+                                          height: 100,
+                                          width: 145,
+                                        ),
                                       ),
-                                    )),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 30,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: const Color(0xffE025E7),
+                                        ),
+                                        child: Center(
+                                            child: InkWell(
+                                          onTap: () {
+                                            if (item.isAnotherUrl == true) {
+                                              launchURL(item.eventTicketButtonUrl.toString());
+                                            } else {
+                                              Get.to(() => const ParadeandCommunityDayScreen());
+                                            }
+                                          },
+                                          child: Text(
+                                            item.eventTicketButtonName.toString(),
+                                            style: GoogleFonts.roboto(
+                                                color: Colors.white,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(width: 10,),
+                              ],
                             );
                           }),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 14,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                         Text(
                           'Event Schedule',
-                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                          style: GoogleFonts.oswald(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         ),
                         Row(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: const Color(0xffE025E7)),
-                              ),
-                              child: const CircleAvatar(
-                                maxRadius: 15,
-                                minRadius: 15,
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15,
-                                  color: Color(0xffE025E7),
+                            InkWell(
+                              onTap: (){
+                                _scrollListView(-2);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: const Color(0xffE025E7)),
+                                ),
+                                child: const CircleAvatar(
+                                  maxRadius: 15,
+                                  minRadius: 15,
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    size: 15,
+                                    color: Color(0xffE025E7),
+                                  ),
                                 ),
                               ),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: const Color(0xffE025E7)),
-                              ),
-                              child: const CircleAvatar(
-                                maxRadius: 15,
-                                minRadius: 15,
-                                backgroundColor: Color(0xffE025E7),
-                                child: Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 15,
-                                  color: Colors.white,
+                            InkWell(
+                              onTap: (){
+                                _scrollListView(2);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: const Color(0xffE025E7)),
+                                ),
+                                child: const CircleAvatar(
+                                  maxRadius: 15,
+                                  minRadius: 15,
+                                  backgroundColor: Color(0xffE025E7),
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 15,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     SizedBox(
-                      height: 280,
+                      height: 300,
                       child: ListView.builder(
+                          controller: _scrollController,
                           scrollDirection: Axis.horizontal,
                           itemCount: getPrideEventsController.getPrideEventsModel.value.data!.eventScheduleLists!.length,
                           shrinkWrap: true,
@@ -248,9 +309,14 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                                 children: [
                                   // Left side: Image
                                   Expanded(
-                                    child: Image.network(
-                                      item.eventImage.toString(),
-                                      fit: BoxFit.cover,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        item.eventImage.toString(),
+                                        fit: BoxFit.fill,
+                                        width: 300,
+                                        height: 130,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -261,21 +327,43 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                                       children: [
                                         TextSpan(
                                           text: item.eventTitle.toString(),
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8),
+                                          style: GoogleFonts.robotoSlab(
+                                              color: Colors.black,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700),
                                         ),
-                                        TextSpan(text: '- ${item.eventDate.toString()}', style: TextStyle(fontSize: 8)),
+                                        TextSpan(text: '- ${item.eventDate.toString()}',
+                                          style: GoogleFonts.robotoSlab(
+                                              color: Colors.black,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500),),
                                       ],
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text(
-                                    item.eventDescription.toString().substring(0, 70),
-                                    style: TextStyle(color: Colors.black, fontSize: 10),
+                                  Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: item.eventDescription.toString().substring(0, 70),
+                                          style: GoogleFonts.robotoSlab(
+                                              color: Colors.black,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                        TextSpan(text: 'Read more',
+                                          style: GoogleFonts.robotoSlab(
+                                              color: Color(0xFFE025E7),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w600),),
+                                      ],
+                                    ),
                                   ),
+
                                   const SizedBox(
-                                    height: 5,
+                                    height: 9,
                                   ),
 
                                   InkWell(
@@ -293,10 +381,13 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                                         borderRadius: BorderRadius.circular(3),
                                         color: const Color(0xffE025E7),
                                       ),
-                                      child: const Center(
+                                      child:  Center(
                                           child: Text(
                                         'Buy Tickets',
-                                        style: TextStyle(fontSize: 10, color: Colors.white),
+                                            style: GoogleFonts.robotoSlab(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w600),
                                       )),
                                     ),
                                   ),
@@ -304,6 +395,9 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                               ),
                             );
                           }),
+                    ),
+                    const SizedBox(
+                      height: 14,
                     ),
                     SizedBox(
                       height: 200,
@@ -319,6 +413,17 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
               )
             : const Center(child: CircularProgressIndicator());
       }),
+    );
+  }
+  void _scrollListView(int direction) {
+    // Calculate the new scroll offset based on the current position and direction
+    double newOffset = _scrollController.offset + (direction * 50.0);
+
+    // Scroll to the new offset with animation
+    _scrollController.animateTo(
+      newOffset,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 }
