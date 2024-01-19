@@ -88,7 +88,7 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: SizedBox(
-                      height: Get.height * .26,
+                      height: Get.height * .23,
                       width: Get.width,
                       child: Image.network(
                         getThingsController.getThingsToDoModel.value.data!.thingsInWhistlerBanner.toString(),
@@ -97,7 +97,7 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                     ),
                   ),
                   Positioned.fill(
-                    top: Get.height*.17,
+                    top: Get.height*.18,
                     left: 10,
                     child: Text(
                       overflow: TextOverflow.ellipsis,
@@ -135,6 +135,9 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                       height: 1.7,
                       fontWeight: FontWeight.w300),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 ListView.builder(
                     itemCount: getThingsController.getThingsToDoModel.value.data!.thingsWhistlerLists!.length,
                     shrinkWrap: true,
@@ -149,86 +152,165 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                             Get.to(()=>const BOOKACCOMMODATIONSScreen());
                           }
                         },
-                        child: Container(
-                          padding: const EdgeInsets.all(7.0),
-                          margin: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(11),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(
-                                    0.5,
-                                    0.5,
-                                  ), //Offset
-                                  blurRadius: 0.5,
-                                  spreadRadius: 0.0,
-                                ),
-                              ]),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Left side: Image
-                              Container(
-                                margin: const EdgeInsets.only(right: 16.0),
-                                child: Image.network(
-                                    item.thingsWhistlerImage.toString(),
-                                  width: 110.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    // Title
-                                    Text(
-                                      item.thingsWhistlerTitle.toString(),
-                                      style: GoogleFonts.roboto(
-                                        color: Colors.black,
-                                        fontSize: 15,
+                        child:  Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
 
-                                        fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                      item.thingsWhistlerDescription.toString().substring(0,70),
-                                            style: GoogleFonts.robotoSlab(
-                                                color: Colors.black,
-                                                fontSize: 11,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(11),
+                                  boxShadow: [
+                                    BoxShadow(blurRadius: 2, color: Colors.grey.shade200, offset: Offset(2, 2)),
 
-                                                fontWeight: FontWeight.w300),
+                                  ]),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Left side: Image
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      item.thingsWhistlerImage.toString(),
+                                      width: 110.0,
+                                      height: 110,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        // Title
+                                        Text(
+                                          item.thingsWhistlerTitle.toString(),
+                                          style: GoogleFonts.robotoSlab(
+                                            fontSize: 15.0,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+
                                           ),
+                                        ),
+                            SizedBox(height: 10,),
+                                        Text.rich(
                                           TextSpan(
-                                            text: ' Read More',
-                                            style: GoogleFonts.robotoSlab(
-                                                color: Color(0xFFE025E7),
-                                                fontSize: 10,
-
-                                                fontWeight: FontWeight.w600),
+                                            children: [
+                                              TextSpan(
+                                                text:
+                                                item.thingsWhistlerDescription.toString().substring(0,120),
+                                                style: GoogleFonts.robotoSlab(
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.black,
+                                                    fontSize: 11),
+                                              ),
+                                              TextSpan(
+                                                text: ' Read More',
+                                                style: GoogleFonts.robotoSlab(
+                                                    color: Color(0xffE025E7),
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 10),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        // Button
+
+                                      ],
                                     ),
-
-                                    // Button
-
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            SizedBox(height: 10,)
+                          ],
                         ),
+
+
+
+                        // Container(
+                        //   padding: const EdgeInsets.all(7.0),
+                        //   margin: const EdgeInsets.all(6),
+                        //   decoration: BoxDecoration(
+                        //       color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(11),
+                        //       boxShadow: const [
+                        //         BoxShadow(
+                        //           color: Colors.black26,
+                        //           offset: Offset(
+                        //             0.5,
+                        //             0.5,
+                        //           ), //Offset
+                        //           blurRadius: 0.5,
+                        //           spreadRadius: 0.0,
+                        //         ),
+                        //       ]),
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       // Left side: Image
+                        //       Container(
+                        //         margin: const EdgeInsets.only(right: 16.0),
+                        //         child: Image.network(
+                        //             item.thingsWhistlerImage.toString(),
+                        //           width: 110.0,
+                        //           fit: BoxFit.cover,
+                        //         ),
+                        //       ),
+                        //       Expanded(
+                        //         child: Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.start,
+                        //           children: [
+                        //             SizedBox(
+                        //               height: 10,
+                        //             ),
+                        //             // Title
+                        //             Text(
+                        //               item.thingsWhistlerTitle.toString(),
+                        //               style: GoogleFonts.roboto(
+                        //                 color: Colors.black,
+                        //                 fontSize: 15,
+                        //
+                        //                 fontWeight: FontWeight.w500),
+                        //             ),
+                        //             SizedBox(
+                        //               height: 10,
+                        //             ),
+                        //             Text.rich(
+                        //               TextSpan(
+                        //                 children: [
+                        //                   TextSpan(
+                        //                     text:
+                        //               item.thingsWhistlerDescription.toString().substring(0,70),
+                        //                     style: GoogleFonts.robotoSlab(
+                        //                         color: Colors.black,
+                        //                         fontSize: 11,
+                        //
+                        //                         fontWeight: FontWeight.w300),
+                        //                   ),
+                        //                   TextSpan(
+                        //                     text: ' Read More',
+                        //                     style: GoogleFonts.robotoSlab(
+                        //                         color: Color(0xFFE025E7),
+                        //                         fontSize: 10,
+                        //
+                        //                         fontWeight: FontWeight.w600),
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //
+                        //             // Button
+                        //
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       );
                     }),
                 const SizedBox(
