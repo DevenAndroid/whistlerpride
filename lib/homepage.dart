@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:whistlerpride/host%20_hotel_screen.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/model/homePageModel.dart';
@@ -688,6 +689,9 @@ class _HomePageState extends State<HomePage> {
                                                  .festivalCountdownList![index]
                                                  .festivalButtonUrl
                                                  .toString()));
+                                            }
+                                            else{
+                                             Get.to(const HosthotelScreen());
                                             }
                                             // Get.to(const TheFestivalScreen());
                                           },
