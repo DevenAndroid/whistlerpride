@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:whistlerpride/widgets/apptheme.dart';
+import 'package:flutter/material.dart';
 
-import 'widgets/apptheme.dart';
 
 class ApiUrl {
   static const baseUrl = "https://whistlerpride.com//wp-json/api/whistler/";
@@ -20,6 +21,7 @@ class ApiUrl {
   static const postcontactUSUrl = "${baseUrl}send_mail_to_admin";
   static const AccommodationsModelUSUrl = "${baseUrl}get_accommodations";
   static const getGuideSkiUrl = "${baseUrl}get_guided_ski_ride";
+  static const getBookAccoUrl = "${baseUrl}get_book_accommodations";
   static const getHostHotel = "${baseUrl}get_host_hotel";
   static const sendMail = "${baseUrl}send_mail_to_admin";
 }
