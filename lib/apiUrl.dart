@@ -10,4 +10,5 @@ class ApiUrl {
   static const getThingsToDo = "${baseUrl}get_things_in_whistler";
   static const getPrideEat = "${baseUrl}get_whistler_pride_eats";
   static const getPrideCharity = "${baseUrl}get_charity_ski_race_data";
+  static const getParadeUrl = "${baseUrl}get_parade_community_day";
 }
