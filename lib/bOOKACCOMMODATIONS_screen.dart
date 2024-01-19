@@ -60,14 +60,15 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            )),
+        // leading: GestureDetector(
+        //     onTap: () {
+        //       Get.back();
+        //     },
+        //     child: const Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     )),
+        centerTitle: true,
         title: const Text(
           'BOOK ACCOMMODATIONS',
           style: TextStyle(color: Colors.black, fontSize: 16),
