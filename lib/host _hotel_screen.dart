@@ -4,7 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whistlerpride/controller/send_mail_controller.dart';
 import 'package:whistlerpride/widgets/common_text_field.dart';
+
+import 'Repo/host_hotel_repo.dart';
+import 'model/host_hotel_model.dart';
 
 class HosthotelScreen extends StatefulWidget {
   const HosthotelScreen({super.key});
@@ -18,6 +23,32 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
 
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
+  Rx<RxStatus> statusOfGetHostHotel = RxStatus.empty().obs;
+  Rx<ModelHostHotel> getHostHotel = ModelHostHotel().obs;
+
+  Future getCharityRace() async {
+    statusOfGetHostHotel.value = RxStatus.empty();
+    await getHostHotelRepo().then((value) {
+      statusOfGetHostHotel.value = RxStatus.success();
+      getHostHotel.value = value;
+    });
+  }
+
+  final sendMailController = Get.put(SendMailController());
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCharityRace();
+  }
   void _onMapCreated(GoogleMapController controller) {
     myController = controller;
   }
@@ -32,13 +63,17 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               Get.back();
             },
             child:  const Icon(Icons.arrow_back,color: Colors.black,)),
-        title: const Text(
+        title:  Text(
           'Host hotel',
-          style: TextStyle(color: Colors.black, fontSize: 16),
+        style:  GoogleFonts.robotoSlab(fontSize: 15, color: Colors.black,fontWeight: FontWeight.w500),
+
         ),
       ),
 
-      body: SingleChildScrollView(
+      body: Obx(() {
+      return statusOfGetHostHotel.value.isSuccess ?
+
+      SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -46,12 +81,41 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/imagess.png'),
-              const SizedBox(
-                height: 10,
+             ClipRRect(
+                 borderRadius: BorderRadius.circular(10),
+                 child: Image.network( getHostHotel.value.data!.hostHotelBanner.toString())),
+
+              SizedBox(
+                height: 130,
+                child: ListView.builder(
+                  itemCount: getHostHotel.value.data!.hotelFeaturedImages!.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius:BorderRadius.circular(10) ,
+                          child: Image.network(
+                          
+                              getHostHotel.value.data!.hotelFeaturedImages![index].toString(),
+                            height: 80,
+                            width: 80,
+                            fit: BoxFit.fill,
+                          
+                          ),
+                        ),
+                        SizedBox(width: 10,)
+                      ],
+                    );
+                  },
+                ),
               ),
+              
+
               Text(
-                'The Aava Whistler Hotel - Your Festival Basecamp',
+                getHostHotel.value.data!.whistlerHotelTitle.toString(),
                 style: GoogleFonts.oswald(
                     color: Colors.black,
                     fontSize: 18,
@@ -61,7 +125,7 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
                 height: 10,
               ),
               Text(
-                'We’ve negotiated a great low rate for Whistler Pride guests to make the Aava Whistler Hotel the best place to stay during Whistler Pride.',
+                getHostHotel.value.data!.whistlerHotelDescription.toString(),
                 style: GoogleFonts.robotoSlab(
                     color: Colors.black,
                     fontSize: 11,
@@ -70,18 +134,24 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                'Stay where the action is! Get easy access to our welcome centre, event shuttle pick-up/drop-off, and be only few steps away from the event venue for our biggest events. A two-minute walk from Whistler Village, a five-minute stroll from the Whistler and Blackcomb Mountain gondolas.. Read More',
-                style: GoogleFonts.robotoSlab(
-                    color: Colors.black,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w300),
-              ),
+
               const SizedBox(
                 height: 10,
               ),
               InkWell(
                 onTap: (){
+
+                  if (getHostHotel
+                      .value
+                      .data!
+                      .isAnotherUrl ==
+                      true) {
+                    _launchInBrowser(Uri.parse(getHostHotel
+                        .value
+                        .data!
+                        .buttonUrl.toString()
+                    ));
+                  }
                   Get.to(const HosthotelScreen());
                 },
                 child: Container(
@@ -92,7 +162,10 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
                       borderRadius: BorderRadius.circular(3)),
                   child: Center(
                       child: Text(
-                        'Book Now',
+                          getHostHotel
+                              .value
+                              .data!
+                              .buttonName.toString(),
                         style:
                         GoogleFonts.roboto(
                             color: Colors.white,
@@ -116,13 +189,15 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               ),
               Text(
                 'Name',
+
                 style:
                 GoogleFonts.robotoSlab(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const RegisterTextFieldWidget(
+               RegisterTextFieldWidget(
+                controller: sendMailController.nameController,
                 hint: 'Enter your Name',
               ),
               const SizedBox(
@@ -136,7 +211,8 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const RegisterTextFieldWidget(
+               RegisterTextFieldWidget(
+                controller: sendMailController.emailController,
                 hint: 'Enter your Email',
               ),
               const SizedBox(
@@ -150,7 +226,8 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const RegisterTextFieldWidget(
+               RegisterTextFieldWidget(
+                controller: sendMailController.messageController,
                 hint: 'Message',
                 maxLines: 5,
                 minLines: 5,
@@ -158,7 +235,7 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
               const SizedBox(height: 20,),
               InkWell(
                 onTap: (){
-                  Get.to(const HosthotelScreen());
+                  sendMailController.send(context);
                 },
                 child: Container(
                   height: 35,
@@ -191,7 +268,7 @@ class _HosthotelScreenState extends State<HosthotelScreen> {
       ],
           ),
         ),
-      ),
-    );
-  }
-}
+      ): const Center(child: CircularProgressIndicator());
+
+  }));
+}}
