@@ -56,7 +56,14 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
       });
     }
   }
-
+  openDialPad(String phoneNumber) async {
+    Uri url = Uri(scheme: "tel", path: phoneNumber);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      print("Can't open dial pad.");
+    }
+  }
   getData() async {
     accommodationsData().then((value) {
       isDataLoading.value = true;
@@ -388,15 +395,29 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 16,
                       ),
-                      const Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'Prefer to book by phone?Call 1.844.932.0606',
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
+                      GestureDetector(
+                        onTap: (){
+                          openDialPad(model.value.data!.preferToBookByPhone.toString());
+                        },
+                        child: Align(
+                          alignment:  Alignment.centerRight,
+                          child: Column (
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text('Prefer to book by phone?Call  ',
+                                style: GoogleFonts.robotoSlab(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
+                                    fontSize: 11),),
+                              Text( model.value.data!.preferToBookByPhone.toString(),
+                                style: GoogleFonts.robotoSlab(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12)),
+
+                            ],
                           ),
                         ),
                       ),
@@ -408,8 +429,7 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount:
-                                model.value.data!.accommodationsMenu!.length,
+                            itemCount: model.value.data!.accommodationsMenu!.length,
                             physics: const AlwaysScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return Container(
