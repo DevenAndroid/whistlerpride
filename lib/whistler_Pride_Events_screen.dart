@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
 import 'controller/getPrideEvents_controller.dart';
+import 'dart:ui' as ui;
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -80,17 +81,47 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: SizedBox(
-                        height: Get.height * .26,
-                        width: Get.width,
-                        child: Image.network(
-                          getPrideEventsController.getPrideEventsModel.value.data!.whistlerBanner.toString(),
-                          fit: BoxFit.cover,
+                    Stack(children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(
+                                0.4), // Replace with your desired color and opacity
+                            BlendMode.srcATop,
+                          ),
+                          child: SizedBox(
+                            height: Get.height * .26,
+                            width: Get.width,
+                            child: Image.network(
+                              getPrideEventsController.getPrideEventsModel.value.data!.whistlerBanner.toString(),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Container(
+                        color: Colors.black, // Adjust opacity as needed
+                        child: BackdropFilter(
+                          filter: ui.ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                          child: Container(
+                            color: Colors.black.withOpacity(0.3),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        left: 10,
+                        right: 10,
+                        child: Text(
+                          getPrideEventsController.getPrideEventsModel.value.data!.whistlerTitle.toString(),
+                          style: GoogleFonts.robotoSlab(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ]),
                     const SizedBox(
                       height: 10,
                     ),
@@ -155,7 +186,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                                         }
                                       },
                                       child: Text(
-                                        item.eventTicketButtonName.toString(),
+                                        item.eventTicketButtonName == '' ?  'Buy Ticket' : item.eventTicketButtonName.toString(),
                                         style: const TextStyle(fontSize: 10, color: Colors.white),
                                       ),
                                     )),

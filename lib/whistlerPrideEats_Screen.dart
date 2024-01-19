@@ -20,11 +20,30 @@ class WhistlerPrideEatsScreen extends StatefulWidget {
 class _WhistlerPrideEatsScreenState extends State<WhistlerPrideEatsScreen> {
 
   final getPrideEatController = Get.put(GetPrideEventsController());
-
+  GoogleMapController? controller;
+  Set<Marker> markers = {};
+  void addMarker({required LatLng position, required String title}) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(position.toString()),
+        position: position,
+        infoWindow: InfoWindow(title: title),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ),
+    );
+  }
   @override
   void initState() {
     super.initState();
-    getPrideEatController.getPrideEat();
+    getPrideEatController.getPrideEat().then((value) {
+      for (var element in getPrideEatController.getGetPrideEatModel.value.data!.prideEatsLatLong!) {
+        addMarker(
+            title: element.eventTitle.toString(),
+            position: element.latLong!
+        );
+      }
+      setState(() {});
+    });
   }
 
   launchURL(String url) async {
@@ -175,7 +194,18 @@ class _WhistlerPrideEatsScreenState extends State<WhistlerPrideEatsScreen> {
                         ),
                       );
                     }),
-
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                    onMapCreated: (GoogleMapController controller) {
+                    },
+                    markers: markers,
+                  ),
+                ),
               ],
             ),
           ),

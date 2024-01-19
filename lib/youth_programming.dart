@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 
@@ -19,10 +20,30 @@ class YouthProgrammingScreen extends StatefulWidget {
 class _YouthProgrammingScreenState extends State<YouthProgrammingScreen> {
 
   final getYouthProgramController = Get.put(GetPrideEventsController());
+  GoogleMapController? controller;
+  Set<Marker> markers = {};
+  void addMarker({required LatLng position, required String title}) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(position.toString()),
+        position: position,
+        infoWindow: InfoWindow(title: title),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ),
+    );
+  }
   @override
   void initState() {
     super.initState();
-    getYouthProgramController.getYouthProgramming();
+    getYouthProgramController.getYouthProgramming().then((value) {
+      for (var element in getYouthProgramController.getYouthProgramModel.value.data!.hostHotelLatLong!) {
+        addMarker(
+            title: element.eventTitle.toString(),
+            position: element.latLong!
+        );
+      }
+      setState(() {});
+    });
   }
   launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -215,7 +236,18 @@ class _YouthProgrammingScreenState extends State<YouthProgrammingScreen> {
                         ),
                       );
                     }),
-
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                    onMapCreated: (GoogleMapController controller) {
+                    },
+                    markers: markers,
+                  ),
+                ),
               ],
             ),
           ),

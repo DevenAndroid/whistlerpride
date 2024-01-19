@@ -1,6 +1,8 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class GetYouthProgrammingModel {
   bool? status;
-  String? message;
+  dynamic message;
   Data? data;
 
   GetYouthProgrammingModel({this.status, this.message, this.data});
@@ -23,18 +25,20 @@ class GetYouthProgrammingModel {
 }
 
 class Data {
-  String? youthProgrammingTitle;
-  String? youthProgrammingBanner;
-  String? welcomingTitle;
-  String? welcomingDescription;
+  dynamic youthProgrammingTitle;
+  dynamic youthProgrammingBanner;
+  dynamic welcomingTitle;
+  dynamic welcomingDescription;
   List<YouthProgrammings>? youthProgrammings;
+  List<HostHotelLatLong>? hostHotelLatLong;
 
   Data(
       {this.youthProgrammingTitle,
         this.youthProgrammingBanner,
         this.welcomingTitle,
         this.welcomingDescription,
-        this.youthProgrammings});
+        this.youthProgrammings,
+        this.hostHotelLatLong});
 
   Data.fromJson(Map<String, dynamic> json) {
     youthProgrammingTitle = json['youth_programming_title'];
@@ -45,6 +49,12 @@ class Data {
       youthProgrammings = <YouthProgrammings>[];
       json['youth_programmings'].forEach((v) {
         youthProgrammings!.add(new YouthProgrammings.fromJson(v));
+      });
+    }
+    if (json['host_hotel_lat_long'] != null) {
+      hostHotelLatLong = <HostHotelLatLong>[];
+      json['host_hotel_lat_long'].forEach((v) {
+        hostHotelLatLong!.add(new HostHotelLatLong.fromJson(v));
       });
     }
   }
@@ -59,17 +69,21 @@ class Data {
       data['youth_programmings'] =
           this.youthProgrammings!.map((v) => v.toJson()).toList();
     }
+    if (this.hostHotelLatLong != null) {
+      data['host_hotel_lat_long'] =
+          this.hostHotelLatLong!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
 
 class YouthProgrammings {
-  String? programmingImage;
-  String? programmingTitle;
-  String? programmingDescription;
-  String? dateAndPlace;
-  String? buttonName;
-  String? buttonUrl;
+  dynamic programmingImage;
+  dynamic programmingTitle;
+  dynamic programmingDescription;
+  dynamic dateAndPlace;
+  dynamic buttonName;
+  dynamic buttonUrl;
   bool? isAnotherUrl;
 
   YouthProgrammings(
@@ -100,6 +114,31 @@ class YouthProgrammings {
     data['button_name'] = this.buttonName;
     data['button_url'] = this.buttonUrl;
     data['is_another_url'] = this.isAnotherUrl;
+    return data;
+  }
+}
+
+class HostHotelLatLong {
+  dynamic eventTitle;
+  dynamic latitude;
+  dynamic longitude;
+  LatLng? latLong ;
+
+  HostHotelLatLong({this.eventTitle, this.latitude, this.longitude});
+
+  HostHotelLatLong.fromJson(Map<String, dynamic> json) {
+    eventTitle = json['event_title'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    latLong = LatLng(double.tryParse(latitude.toString()) ?? 0, double.tryParse(longitude.toString()) ?? 0);
+
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['event_title'] = this.eventTitle;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     return data;
   }
 }
