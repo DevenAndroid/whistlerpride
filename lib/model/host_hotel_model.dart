@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class ModelHostHotel {
   bool? status;
   String? message;
@@ -79,6 +81,7 @@ class HostHotelLatLong {
   String? eventTitle;
   String? latitude;
   String? longitude;
+  LatLng? latLong ;
 
   HostHotelLatLong({this.eventTitle, this.latitude, this.longitude});
 
@@ -86,6 +89,7 @@ class HostHotelLatLong {
     eventTitle = json['event_title'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    latLong = LatLng(double.tryParse(latitude.toString()) ?? 0, double.tryParse(longitude.toString()) ?? 0);
   }
 
   Map<String, dynamic> toJson() {
