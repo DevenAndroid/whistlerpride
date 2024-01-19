@@ -405,15 +405,15 @@ class _CharitySkiRaceScreenState extends State<CharitySkiRaceScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  height: 200,
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
-                    onMapCreated: (GoogleMapController controller) {
-                    },
-                    markers: markers,
-                  ),
-                ),
+                // SizedBox(
+                //   height: 200,
+                //   child: GoogleMap(
+                //     initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                //     onMapCreated: (GoogleMapController controller) {
+                //     },
+                //     markers: markers,
+                //   ),
+                // ),
               ],
             ),
           ),

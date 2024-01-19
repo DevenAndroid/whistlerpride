@@ -386,7 +386,7 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                                 launchURL( getCharityController.getParadeModel.value.data!.youthProgrammingButtonUrl.toString());
                               },
                               child: Container(
-                                width: 120,
+                                width: 150,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3),
                                   color: const Color(0xffE025E7),
@@ -411,15 +411,15 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
               const SizedBox(
                 height: 10,
               ),
-                SizedBox(
-                  height: 200,
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
-                    onMapCreated: (GoogleMapController controller) {
-                    },
-                    markers: markers,
-                  ),
-                ),
+                // SizedBox(
+                //   height: 200,
+                //   child: GoogleMap(
+                //     initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                //     onMapCreated: (GoogleMapController controller) {
+                //     },
+                //     markers: markers,
+                //   ),
+                // ),
               ],
             ),
           ),

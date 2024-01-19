@@ -316,15 +316,15 @@ class _WhistlerThingsScreenState extends State<WhistlerThingsScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 200,
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
-                    onMapCreated: (GoogleMapController controller) {
-                    },
-                    markers: markers,
-                  ),
-                ),
+                // SizedBox(
+                //   height: 200,
+                //   child: GoogleMap(
+                //     initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                //     onMapCreated: (GoogleMapController controller) {
+                //     },
+                //     markers: markers,
+                //   ),
+                // ),
               ],
             ),
           ),
