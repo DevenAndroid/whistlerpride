@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui' as ui;
 
@@ -16,12 +17,31 @@ class ParadeandCommunityDayScreen extends StatefulWidget {
 
 class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScreen> {
   ScrollController _scrollController = ScrollController();
+  GoogleMapController? controller;
+  Set<Marker> markers = {};
+  bool isExpanded = false;
+  void addMarker({required LatLng position, required String title}) {
+    markers.add(
+      Marker(
+        markerId: MarkerId(position.toString()),
+        position: position,
+        infoWindow: InfoWindow(title: title),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ),
+    );
+  }
 
   final getCharityController = Get.put(GetCharityRaceController());
   @override
   void initState() {
     super.initState();
-    getCharityController.getParade();
+    getCharityController.getParade().then((value) {
+      for(var element in getCharityController.getParadeModel.value.data!.hostHotelLatLong!){
+        addMarker(
+            position: element.latLong!,
+            title: element.eventTitle.toString());
+      }
+    });
   }
   launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -362,7 +382,9 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                             // Button
                             const SizedBox(height: 8,),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                launchURL( getCharityController.getParadeModel.value.data!.youthProgrammingButtonUrl.toString());
+                              },
                               child: Container(
                                 width: 120,
                                 decoration: BoxDecoration(
@@ -372,7 +394,7 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                                 padding: const EdgeInsets.all(6),
                                 child: Center(
                                     child: Text(
-                                      getCharityController.getParadeModel.value.data!.celebrationButtonName.toString(),
+                                      getCharityController.getParadeModel.value.data!.youthProgrammingButtonName == '' ?  'Youth Programming Info' :  getCharityController.getParadeModel.value.data!.youthProgrammingButtonName.toString(),
                                       style: GoogleFonts.roboto(
                                           color: const Color(0xFFFFFFFF),
                                           fontSize: 11,
@@ -384,6 +406,18 @@ class _ParadeandCommunityDayScreenState extends State<ParadeandCommunityDayScree
                         ),
                       ),
                     ],
+                  ),
+                ),
+              const SizedBox(
+                height: 10,
+              ),
+                SizedBox(
+                  height: 200,
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(target: markers.first.position, zoom: 14.0),
+                    onMapCreated: (GoogleMapController controller) {
+                    },
+                    markers: markers,
                   ),
                 ),
               ],

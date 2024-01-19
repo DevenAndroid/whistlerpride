@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
 import 'controller/getPrideEvents_controller.dart';
+import 'dart:ui' as ui;
 
 class WhistlerPrideEventsScreen extends StatefulWidget {
   const WhistlerPrideEventsScreen({super.key});
@@ -85,7 +85,6 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Stack(children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(6),
