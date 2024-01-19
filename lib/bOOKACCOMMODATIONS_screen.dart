@@ -271,28 +271,6 @@ class _AccommodationScreenState extends State<AccommodationScreen> {
                         height: 10,
                       ),
                       Text(
-                        'Stay and Ski packages are now available when you pair your accommodation with lift tickets.',
-                        style: GoogleFonts.robotoSlab(
-                          fontSize: 11.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Book 3+ nights between January 1 – 31, 2024 to receive a free 100 CAD Whistler Dining Voucher, valid at participating restaurants. Enter promo code JANUARYDINING at check-out or call 1.844.932.0606 and mention this offer to the Whistler-based Travel Consultants.',
-                        style: GoogleFonts.robotoSlab(
-                          fontSize: 11.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
                         'Select Date',
                         style: GoogleFonts.robotoSlab(
                           fontSize: 18.0,
