@@ -416,21 +416,26 @@ class _BookAccommodationScreenState extends State<BookAccommodationScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         var item = getBookAccoController.getBookAccoModel.value.data!.accommodationsImageLists![index];
-                        return Container(
-                          width: 170,
-                          padding: const EdgeInsets.all(8),
-                          margin: const EdgeInsets.only(right: 16.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Colors.grey, // Set the desired border color
-                              width: 0.8, // Set the desired border width
+                        return GestureDetector(
+                          onTap: (){
+                            launchURL(item.accommodationsImageUrl.toString());
+                          },
+                          child: Container(
+                            width: 170,
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.only(right: 16.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Colors.grey, // Set the desired border color
+                                width: 0.8, // Set the desired border width
+                              ),
                             ),
-                          ),
-                          child: Image.network(
-                            item.accommodationsImage.toString(),
-                            width: 130.0,
-                            fit: BoxFit.contain,
+                            child: Image.network(
+                              item.accommodationsImage.toString(),
+                              width: 130.0,
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         );
                       }),
