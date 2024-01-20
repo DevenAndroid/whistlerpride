@@ -196,37 +196,42 @@ class _TheFestivalScreenState extends State<TheFestivalScreen> {
                                             height: 10,
                                           ),
                                           // Button
-                                          model
-                                                      .value
-                                                      .data!
-                                                      .festivalLists![index]
-                                                      .festivalButtonName !=
-                                                  ""
-                                              ? Container(
-                                                  height: 35,
-                                                  width: 120,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            3),
-                                                    color:
-                                                        const Color(0xffE025E7),
+                                          model.value.data!.festivalLists![index].festivalButtonName != ""
+                                              ? GestureDetector(
+                                             onTap: (){
+                                               if(index ==0){
+                                                 Get.to(()=> const GuidedSkiRideGruopsScreen());
+                                               }
+                                               if(index ==1){
+                                                 Get.to(()=> const WhistlerPrideEventsScreen());
+                                               }
+                                             },
+                                                child: Container(
+                                                    height: 35,
+                                                    width: 120,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              3),
+                                                      color:
+                                                          const Color(0xffE025E7),
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                      model
+                                                          .value
+                                                          .data!
+                                                          .festivalLists![index]
+                                                          .festivalButtonName
+                                                          .toString(),
+                                                      style: GoogleFonts.roboto(
+                                                          color: Colors.white,
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    )),
                                                   ),
-                                                  child: Center(
-                                                      child: Text(
-                                                    model
-                                                        .value
-                                                        .data!
-                                                        .festivalLists![index]
-                                                        .festivalButtonName
-                                                        .toString(),
-                                                    style: GoogleFonts.roboto(
-                                                        color: Colors.white,
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  )),
-                                                )
+                                              )
                                               : const SizedBox.shrink()
                                         ],
                                       ),
