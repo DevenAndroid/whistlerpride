@@ -4,17 +4,23 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:whistlerpride/bOOKACCOMMODATIONStwo_Screen.dart';
 import 'package:whistlerpride/host%20_hotel_screen.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/model/homePageModel.dart';
+import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
+import 'package:whistlerpride/thefestival_Screen.dart';
+import 'package:whistlerpride/whistlerPrideEats_Screen.dart';
+import 'package:whistlerpride/whistler_Pride_Events_screen.dart';
+import 'package:whistlerpride/whistler_thing%20screen.dart';
 import 'package:whistlerpride/widgets/apptheme.dart';
-import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
+import 'package:whistlerpride/youth_programming.dart';
 import 'dart:ui' as ui;
+import 'CharitySkiRace_screen.dart';
 import 'Repo/homepage_repo.dart';
 import 'about_ur.dart';
 import 'contact_screen.dart';
 import 'faq_screen.dart';
+import 'guidedSkiRideGruops_screen.dart';
 import 'notification.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,6 +43,8 @@ class _HomePageState extends State<HomePage> {
   RxBool isDataLoading = false.obs;
   Rx<HomePageModel> model = HomePageModel().obs;
   List<String> options = [];
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   getData() async {
     homeData().then((value) {
       isDataLoading.value = true;
@@ -46,14 +54,86 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-   Future<void> _launchInBrowser(Uri url) async {
-     if (!await launchUrl(
-       url,
-       mode: LaunchMode.externalApplication,
-     )) {
-       throw Exception('Could not launch $url');
-     }
-   }
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+  void FestivalNavigateToScreen(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const TheFestivalScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const WhistlerPrideEventsScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ParadeandCommunityDayScreen()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CharitySkiRaceScreen()),
+        );
+        break;
+      case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const GuidedSkiRideGruopsScreen()),
+        );
+        break;
+      case 5:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const WhistlerPrideEatsScreen()),
+        );
+        break;
+      case 6:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const YouthProgrammingScreen()),
+        );
+        break;
+      case 7:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const WhistlerThingsScreen()),
+        );
+        break;
+    }
+  }
+
+  void AccommodationsnavigateToScreen(int index) {
+    // Use Navigator to navigate to another screen based on the selected index
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HosthotelScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BookAccommodationScreen()),
+        );
+        break;
+    // Add more cases for other screens as needed
+    }
+  }
+
 
   @override
   void initState() {
@@ -69,7 +149,6 @@ class _HomePageState extends State<HomePage> {
     final double itemWidth = size.width / 2;
     return Scaffold(
         appBar: AppBar(
-
             backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
             elevation: 0,
@@ -91,16 +170,23 @@ class _HomePageState extends State<HomePage> {
                   width: 30,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Image.asset(
-                  'assets/images/menu.png',
-                  height: 30,
-                  width: 30,
+              Builder(
+                builder: (context) => Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Open the drawer when the image is tapped
+                      Scaffold.of(context).openDrawer();
+                    },
+                    child: Image.asset(
+                      'assets/images/menu.png',
+                      height: 30,
+                      width: 30,
+                    ),
+                  ),
                 ),
               ),
             ]),
-
         drawer: Drawer(
           backgroundColor: Colors.white,
           child: ListView(
@@ -266,52 +352,34 @@ class _HomePageState extends State<HomePage> {
                                     minWidth: MediaQuery.of(context).size.width,
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-
                                   position: PopupMenuPosition.under,
                                   offset: Offset.fromDirection(50, 100),
                                   onSelected: (value) {
-                                    setState(() {
-                                      dropDownValue2.value = model.value.data!
-                                          .festivalMenu![value].menuTitle
-                                          .toString();
-                                    });
+                                    FestivalNavigateToScreen(value);
                                   },
-                                  // icon: Icon(Icons.keyboard_arrow_down),
                                   itemBuilder: (context) => List.generate(
                                     model.value.data!.festivalMenu!.length,
-                                    (index) => PopupMenuItem(
-                                        child: Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            dropDownValue2.value = model
-                                                .value
-                                                .data!
-                                                .festivalMenu![index]
-                                                .menuTitle
-                                                .toString();
-                                            refreshInt.value = DateTime.now()
-                                                .millisecondsSinceEpoch;
-                                            setState(() {});
-                                            Get.back();
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 12.0, right: 12),
-                                            child: Text(
-                                              model
-                                                  .value
-                                                  .data!
-                                                  .festivalMenu![index]
-                                                  .menuTitle
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 2,
+                                        (index) => PopupMenuItem(
+                                      value: index, // Assign the index as the value
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              FestivalNavigateToScreen(index);
+                                              Get.back();
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left: 12.0, right: 12),
+                                              child: Text(
+                                                model.value.data!.festivalMenu![index].menuTitle.toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    )),
+                                        ],
+                                      ),
+                                    ),
                                   ),
 
                                   child: Container(
@@ -390,55 +458,35 @@ class _HomePageState extends State<HomePage> {
                                     minWidth: MediaQuery.of(context).size.width,
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-
                                   position: PopupMenuPosition.under,
                                   offset: Offset.fromDirection(50, 100),
                                   onSelected: (value) {
-                                    setState(() {
-                                      dropDownValue3.value = model.value.data!
-                                          .accommodationsMenu![value].menuTitle
-                                          .toString();
-                                    });
+                                    AccommodationsnavigateToScreen(value); // Call the method to navigate based on the selected value
                                   },
-                                  // icon: Icon(Icons.keyboard_arrow_down),
                                   itemBuilder: (context) => List.generate(
-                                    model
-                                        .value.data!.accommodationsMenu!.length,
-                                    (index) => PopupMenuItem(
-                                        child: Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            dropDownValue3.value = model
-                                                .value
-                                                .data!
-                                                .accommodationsMenu![index]
-                                                .menuTitle
-                                                .toString();
-                                            refreshInt.value = DateTime.now()
-                                                .millisecondsSinceEpoch;
-                                            setState(() {});
-                                            Get.back();
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 12.0, right: 12),
-                                            child: Text(
-                                              model
-                                                  .value
-                                                  .data!
-                                                  .accommodationsMenu![index]
-                                                  .menuTitle
-                                                  .toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 2,
+                                    model.value.data!.accommodationsMenu!.length,
+                                        (index) => PopupMenuItem(
+                                      value: index, // Assign the index as the value
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              AccommodationsnavigateToScreen(index); // Call the method to navigate based on the selected index
+                                              Get.back();
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left: 12.0, right: 12),
+                                              child: Text(
+                                                model.value.data!.accommodationsMenu![index].menuTitle.toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    )),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 8),
@@ -522,7 +570,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     _scrollListView(-2);
                                   },
                                   child: Container(
@@ -547,7 +595,7 @@ class _HomePageState extends State<HomePage> {
                                   width: 10,
                                 ),
                                 InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     _scrollListView(2);
                                   },
                                   child: Container(
@@ -578,7 +626,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           height: 310,
                           child: ListView.builder(
-                            controller: _scrollController,
+                              controller: _scrollController,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemCount: model
@@ -683,15 +731,14 @@ class _HomePageState extends State<HomePage> {
                                                         index]
                                                     .isAnotherUrl ==
                                                 true) {
-                                             _launchInBrowser(Uri.parse(model
-                                                 .value
-                                                 .data!
-                                                 .festivalCountdownList![index]
-                                                 .festivalButtonUrl
-                                                 .toString()));
-                                            }
-                                            else{
-                                             Get.to(const HosthotelScreen());
+                                              _launchInBrowser(Uri.parse(model
+                                                  .value
+                                                  .data!
+                                                  .festivalCountdownList![index]
+                                                  .festivalButtonUrl
+                                                  .toString()));
+                                            } else {
+                                              Get.to(const HosthotelScreen());
                                             }
                                             // Get.to(const TheFestivalScreen());
                                           },
@@ -909,6 +956,7 @@ class _HomePageState extends State<HomePage> {
                 ));
         }));
   }
+
   void _scrollListView(int direction) {
     // Calculate the new scroll offset based on the current position and direction
     double newOffset = _scrollController.offset + (direction * 50.0);
@@ -920,5 +968,4 @@ class _HomePageState extends State<HomePage> {
       curve: Curves.easeInOut,
     );
   }
-
 }
