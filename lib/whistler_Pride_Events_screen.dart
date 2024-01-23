@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whistlerpride/parade_and_Community_Day_screen.dart';
+import 'package:whistlerpride/widgets/bottom_navigationBar.dart';
 import 'controller/getPrideEvents_controller.dart';
 import 'dart:ui' as ui;
 
@@ -65,7 +66,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
         elevation: 0,
         leading: GestureDetector(
             onTap: () {
-              Get.back();
+              Get.to(BottomNavbar());
             },
             child:  Icon(Icons.arrow_back,color: Colors.black,)),
         title:  Text(
