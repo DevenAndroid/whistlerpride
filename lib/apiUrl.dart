@@ -24,6 +24,7 @@ class ApiUrl {
   static const getBookAccoUrl = "${baseUrl}get_book_accommodations";
   static const getHostHotel = "${baseUrl}get_host_hotel";
   static const sendMail = "${baseUrl}send_mail_to_admin";
+  static const notification = "${baseUrl}whistler_notification";
 }
 
 showToast(message) {
