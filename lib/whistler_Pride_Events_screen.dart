@@ -66,7 +66,7 @@ class _WhistlerPrideEventsScreenState extends State<WhistlerPrideEventsScreen> {
         elevation: 0,
         leading: GestureDetector(
             onTap: () {
-              Get.to(BottomNavbar());
+              Get.to(const BottomNavbar());
             },
             child:  Icon(Icons.arrow_back,color: Colors.black,)),
         title:  Text(
